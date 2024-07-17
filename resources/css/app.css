@@ -1,3 +1,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+    font-family: Poppins-bold;
+    src: url(../../public/assets/Poppins-Bold.ttf);
+}
+
+.primary-color {
+    background-color: #151E12;
+}
+
+.homeHero-stroke {
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: #759A6C;
+}
+
+#homeHero-text h1 {
+    font-family: Poppins-bold;
+}
