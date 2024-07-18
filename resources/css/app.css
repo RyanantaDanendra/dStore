@@ -6,16 +6,40 @@
     font-family: Poppins-bold;
     src: url(../../public/assets/Poppins-Bold.ttf);
 }
+@font-face {
+    font-family: Poppins;
+    src: url(../../public/assets/Poppins-Regular.ttf);
+}
+
+* {
+    font-family: Poppins;
+}
 
 .primary-color {
     background-color: #151E12;
 }
+.secondary-color {
+    background-color: #20361C;
+}
 
-.homeHero-stroke {
-    -webkit-text-stroke-width: 2px;
+.homeHero-stroke, .homeSneakers-stroke {
+    -webkit-text-stroke-width: 3px;
     -webkit-text-stroke-color: #759A6C;
 }
 
 #homeHero-text h1 {
     font-family: Poppins-bold;
 }
+#homeHero-text h1 span {
+    font-family: Poppins-bold;
+}
+#homeHero-image #personImage {
+    width: 500px;
+}
+#homeHero-image .curveLine {
+    width: 700px;
+}
+#homeSneakers h1 {
+    font-family: Poppins-bold;
+}
+
