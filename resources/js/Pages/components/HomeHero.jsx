@@ -5,7 +5,7 @@ import curveLine from '../../../../public/assets/curveLine.png'
 const HomeHero = () => {
     return (
         <>
-            <div className="container w-full h-full flex">
+            <div className="container w-full h-full flex pt-24">
                 <div id="homeHero-text" className="w-1/2 mt-32 ms-16">
                     <h1 className="text-5xl ms-18"><span className='homeHero-stroke text-transparent'>Find your perfect</span> <br />look at unbeatable price!</h1>
                     <div id="homeHero-buttons" className=' mt-8 flex gap-6 text-white'>

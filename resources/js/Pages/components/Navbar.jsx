@@ -8,12 +8,13 @@ import { Link } from '@inertiajs/inertia-react';
 function Navbar() {
     return (
         <>
-            <nav className="primary-color h-24 flex justify-between px-3 items-center">
+            <nav className="primary-color h-24 flex justify-between px-3 items-center fixed w-full">
                 <h1 className="text-3xl text-white">D'Store</h1>
                <div className="links flex gap-5 text-white">
                     <Link href='/'>home</Link>
                     <Link href="/sneakers">Sneakers</Link>
                     <Link href='/apparels'>Apparels</Link>
+                    <Link href='/login'>Login</Link>
                 </div>
             </nav> 
         </>
