@@ -6,6 +6,7 @@ import { Link } from '@inertiajs/inertia-react';
 
 
 function Navbar() {
+
     return (
         <>
             <nav className="primary-color h-24 flex justify-between px-3 items-center fixed w-full">

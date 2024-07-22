@@ -1,4 +1,5 @@
-import '../../../css/app.css'
+import '../../../css/app.css';
+import axios from 'axios';
 
 const HomeSneakers = () => {
     return (
