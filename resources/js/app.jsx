@@ -1,3 +1,5 @@
+// app.jsx
+import React from 'react';
 import './bootstrap';
 import '../css/app.css';
 
@@ -13,7 +15,11 @@ createInertiaApp({
     setup({ el, App, props }) {
         const root = createRoot(el);
 
-        root.render(<App {...props} />);
+        root.render(
+            <React.StrictMode>
+                <App {...props} />
+            </React.StrictMode>
+        );
     },
     progress: {
         color: '#4B5563',
