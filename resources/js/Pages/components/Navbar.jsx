@@ -19,8 +19,10 @@ const Navbar = ({ auth }) => {
             return (
                 <>
                     <p className='cursor-pointer' id='userName' onClick={openModal}>{ auth.name }</p>
-                    <Modal className='absolute top-0' show={modalopen} onClose={closeModal}>
-                        <h1>Hello</h1>
+                    <Modal show={modalopen} onClose={closeModal}>
+                        <p className='font-bold text-xl'>{ auth.name }</p>
+                        <Link href='/profile'>Profile</Link>
+                        <Link href='logout' method='post' as='button'>Logout</Link>
                     </Modal>
                 </>
             );
