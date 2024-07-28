@@ -8,7 +8,7 @@ const DashboardLayout = ({ auth, children }) => {
                     <h1 className="font-bold text-center">Dashboard</h1>
                     <div className="links flex flex-col text-justify mt-12 ps-5 text-l gap-2">
                         <Link>Users</Link>
-                        <Link>Sneakers</Link>
+                        <Link href='dashboard/sneakers'>Sneakers</Link>
                         <Link>Apparels</Link>
                     </div>
                 </div>

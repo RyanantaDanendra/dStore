@@ -20,9 +20,9 @@ Route::get('/sneakers', function() {
     return Inertia::render('Sneakers');
 });
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// DASHBOARD
+Route::get('/dashboard', [App\http\Controllers\dashboardController::class, 'index'])->middleware(['auth'])->name('dashboard');
+Route::get('/dashboard/sneakers', [App\Http\Controllers\dashboardController::class, 'sneakers'])->name('dashboard.sneakers')->middleware('auth');
 
 Route::get('/register', function() {
     return Inertia::render('Register');
@@ -32,8 +32,10 @@ Route::get('/login', function() {
     return Inertia::render('Login');
 })->name('loginPage');
 
-Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
 
 require __DIR__.'/auth.php';
