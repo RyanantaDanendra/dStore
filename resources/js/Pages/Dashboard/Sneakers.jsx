@@ -4,8 +4,9 @@ const Sneakers = () => {
     return (
         <>
             <DashboardLayout>
-                <div className="container">
-                    <h1>Sneakers</h1>
+                <div className="container w-full p-8">
+                    <h1>Sneakers Table</h1>
+                    
                 </div>
             </DashboardLayout>
         </>

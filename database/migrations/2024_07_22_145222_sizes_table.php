@@ -14,8 +14,10 @@ return new class extends Migration
         Schema::create('sizes', function (Blueprint $table) {
             $table->id();
             $table->integer('id_sneaker');
+            $table->integer('id_apparel');
             $table->string('size');
             $table->integer('stock');
+            $table->timestamps();
         });
     }
 
