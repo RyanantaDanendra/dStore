@@ -24,6 +24,8 @@ Route::get('/sneakers', function() {
 Route::get('/dashboard', [App\http\Controllers\dashboardController::class, 'index'])->middleware(['auth'])->name('dashboard');
 Route::get('/dashboard/sneakers', [App\Http\Controllers\dashboardController::class, 'sneakers'])->name('dashboard.sneakers')->middleware('auth');
 
+Route::get('/dashboard/addsneaker', [App\Http\Controllers\dashboardController::class, 'addSneakerPage'])->name('addSneakerPage')->middleware('auth');
+
 Route::get('/register', function() {
     return Inertia::render('Register');
 })->name('register');

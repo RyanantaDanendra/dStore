@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\Sneaker;
 use App\Models\User;
+use App\Models\Size;
 
 class dashboardController extends Controller
 {
@@ -19,8 +20,22 @@ class dashboardController extends Controller
         ]);
     }
 
+    // DASHBOARD -> SNEAKERS
+
     public function sneakers() {
-        return Inertia::render('Dashboard/Sneakers');
+        $sneakers = Sneaker::all();
+        $sneakerId = Sneaker::pluck('id');
+
+        $sizes = Size::whereIn('id_sneaker', $sneakerId)->get();
+
+        return Inertia::render('Dashboard/Sneakers', [
+            'sneakers' => $sneakers,
+            'sizes' => $sizes,
+        ]);
+    }
+
+    public function addSneakerPage() {
+        return Inertia::render('Dashboard/AddSneaker');
     }
 }
 
