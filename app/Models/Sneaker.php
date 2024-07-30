@@ -11,6 +11,14 @@ class Sneaker extends Model
 {
     use HasFactory; 
 
+    protected $fillable = [
+        'name',
+        'brand',
+        'condition',
+        'size',
+        'stock',
+    ];
+
     // RELATION
     public function size(): BelongsTo {
         return $this->belongsTo(Size::class);

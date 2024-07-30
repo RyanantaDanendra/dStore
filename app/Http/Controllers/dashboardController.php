@@ -37,5 +37,21 @@ class dashboardController extends Controller
     public function addSneakerPage() {
         return Inertia::render('Dashboard/AddSneaker');
     }
+
+    public function addSneaker(Request $request) {
+        $validatedData = $request->validate([
+            'name' => 'required | string | max : 50',
+            'brand' => 'required | string | max : 20',
+            'condition' => 'required | string | max : 20',
+        ]);
+
+        Sneaker::create([
+            'name' => $request->name,
+            'brand' => $request->brand,
+            'condition' => $request->condition,
+        ]);
+
+        return redirect()->route('addSneakerPage')->with('success', 'Sneaker Added Successfully');
+    }
 }
 
