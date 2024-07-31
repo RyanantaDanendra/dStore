@@ -51,7 +51,28 @@ class dashboardController extends Controller
             'condition' => $request->condition,
         ]);
 
-        return redirect()->route('addSneakerPage')->with('success', 'Sneaker Added Successfully');
+        return redirect()->route('dashboard.sneakers')->with('success', 'Sneaker Added Successfully');
+    }
+
+    public function addSizePage($id) {
+        return Inertia::render('Dashboard/AddSize', [
+            'id' => $id,
+        ]);
+    }
+
+    public function addSize($id, Request $request) {
+        $validatedData = $request->validate([
+            'size' => 'required | integer | max: 99',
+            'stock' => 'required | integer | max: 99',
+        ]);
+
+        Size::create([
+            'id_sneaker' => $id,
+            'size' => $request->size,
+            'stock' => $request->stock,
+        ]);
+
+        return redirect()->route('dashboard.sneakers');
     }
 }
 

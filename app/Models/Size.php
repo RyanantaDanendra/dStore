@@ -10,6 +10,13 @@ class Size extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'id_sneaker',
+        'id_apparel',
+        'size',
+        'stock',
+    ];
+
     // RELATIONS
     public function sneaker(): HasMany {
         return $this->hasMany(Sneaker::class);
