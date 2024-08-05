@@ -7,6 +7,7 @@ use Inertia\Inertia;
 use App\Models\Sneaker;
 use App\Models\User;
 use App\Models\Size;
+use App\Models\Image;
 
 class dashboardController extends Controller
 {
@@ -21,7 +22,6 @@ class dashboardController extends Controller
     }
 
     // DASHBOARD -> SNEAKERS
-
     public function sneakers() {
         $sneakers = Sneaker::all();
         $sneakerId = Sneaker::pluck('id');
@@ -70,6 +70,31 @@ class dashboardController extends Controller
             'id_sneaker' => $id,
             'size' => $request->size,
             'stock' => $request->stock,
+        ]);
+
+        return redirect()->route('dashboard.sneakers');
+    }
+
+    public function addImagesPage($id) {
+        return Inertia::render('Dashboard/AddImages', [
+            'id' => $id,
+        ]);
+    }
+
+    public function addImages($id, Request $request) {
+        $validatedData = $request->validate([
+            'image' => 'required|image|mimes:jpeg,jpg,png',
+        ]);
+
+        if($request->hasFile('image')) {
+            $path = $request->file('image')->store('image', 'public');
+        } else {
+            return redirect()->back()->withErrors(['image' => 'Image file is required.']);
+        }
+
+        Image::create([
+            'id_sneaker' => $id,
+            'image' => $path,
         ]);
 
         return redirect()->route('dashboard.sneakers');

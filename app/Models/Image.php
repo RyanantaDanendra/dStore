@@ -11,6 +11,12 @@ class Image extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'image',
+        'id_sneaker',
+        'id_apparel',
+    ];
+
     // RELATIONS
     public function sneaker(): BelongsTo {
         return $this->belongsTo(Sneaker::class);
