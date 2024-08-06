@@ -27,10 +27,17 @@ Route::get('/dashboard/sneakers', [App\Http\Controllers\dashboardController::cla
 // DASHBOARD -> SNEAKERS
 Route::get('/dashboard/addsneaker', [App\Http\Controllers\dashboardController::class, 'addSneakerPage'])->name('addSneakerPage')->middleware('auth');
 Route::post('/dashboard/addsneaker', [App\Http\Controllers\dashboardController::class, 'addSneaker'])->name('addSneaker')->middleware('auth');
+// DASHBOARD -> SNEAKERS -> ADD SIZE
 Route::get('/dashboard/addsize/{id}', [App\Http\COntrollers\dashboardController::class, 'addSizePage'])->name('addSizePage')->middleware('auth');
 Route::post('/dashboard/addSize/{id}', [App\Http\Controllers\dashboardController::class, 'addSize'])->name('addSize')->middleware('auth');
+// DASHBOARD -> SNEAKERS -> ADD IMAGE
 Route::get('/dashboard/addimages/{id}', [App\Http\Controllers\dashboardController::class, 'addimagesPage'])->name('addImagesPage')->middleware('auth');
 Route::post('/dashboard/addimages/{id}', [App\Http\Controllers\dashboardController::class, 'addImages'])->name('addImages')->middleware('auth');
+// DASHBOARD -> SNEAKERS -> EDIT SNEAKER DATA ( NAME, BRAND, CONDITION )
+Route::get('/dashboard/sneakers/editsneaker/{id}', [App\Http\Controllers\dashboardController::class, 'editSneakerPage'])->name('editSneakerPage')->middleware('auth');
+Route::put('/dashboard/sneakers/editsneaker/{id}', [App\Http\Controllers\dashboardController::class, 'editSneaker'])->name('editSneaker');
+// DASHBOARD -> SNEAKERS -> EDIT SNEAKER DATA ( SIZE, STOCK )
+Route::get('/dashboard/sneakers/sizestock/{id}', [App\Http\Controllers\dashboardController::class, 'editSizeStockPage'])->name('editSizeStockPage');
 
 Route::get('/register', function() {
     return Inertia::render('Register');

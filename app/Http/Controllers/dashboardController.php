@@ -54,6 +54,7 @@ class dashboardController extends Controller
         return redirect()->route('dashboard.sneakers')->with('success', 'Sneaker Added Successfully');
     }
 
+    // DASHBOARD -> SNEAKERS -> ADD SIZE
     public function addSizePage($id) {
         return Inertia::render('Dashboard/AddSize', [
             'id' => $id,
@@ -75,6 +76,7 @@ class dashboardController extends Controller
         return redirect()->route('dashboard.sneakers');
     }
 
+    // DASHBOARD -> SNEAKERS -> ADD IMAGE
     public function addImagesPage($id) {
         return Inertia::render('Dashboard/AddImages', [
             'id' => $id,
@@ -98,6 +100,40 @@ class dashboardController extends Controller
         ]);
 
         return redirect()->route('dashboard.sneakers');
+    }
+
+    // DASHBOARD -> SNEAKERS -> EDIT SNEAKER
+    public function editSneakerPage($id) {
+        $sneaker = Sneaker::find($id);
+
+        return Inertia::render('Dashboard/EditSneaker', [
+            'id' => $id,
+            'sneaker' => $sneaker,
+        ]);
+    }
+
+    public function editSneaker($id, Request $request) {
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:50',
+            'brand' => 'required|string|max:20',
+            'condition' => 'required|string|max:20',
+        ]);
+
+        $sneaker = Sneaker::find($id);
+
+        $sneaker->update($validatedData);
+
+        return redirect()->route('dashboard.sneakers')->with('success', 'Sneaker data updated successfully!');
+    }
+
+    // DASHBOARD -> SNEAKERS -> EDIT SIZE AND STOCK
+    public function editSizeStockPage($id) {
+        $size = Size::find($id);
+
+        return Inertia::render('Dashboard/EditSizeStock', [
+            'id' => $id,
+            'size' => $size, 
+        ]);
     }
 }
 
