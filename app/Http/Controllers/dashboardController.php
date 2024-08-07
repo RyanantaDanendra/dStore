@@ -135,5 +135,18 @@ class dashboardController extends Controller
             'size' => $size, 
         ]);
     }
+
+    public function editSizeStock($id, Request $request) {
+        $validatedData = $request->validate([
+            'size' => 'required | integer | max: 99',
+            'stock' => 'required | integer | max: 99',
+        ]);
+
+        $size = Size::find($id);
+
+        $size->update($validatedData);
+
+        return redirect()->route('dashboard.sneakers')->with('success', 'Sneaker data updated successfully!');
+    }
 }
 

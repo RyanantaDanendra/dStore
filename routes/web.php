@@ -38,6 +38,7 @@ Route::get('/dashboard/sneakers/editsneaker/{id}', [App\Http\Controllers\dashboa
 Route::put('/dashboard/sneakers/editsneaker/{id}', [App\Http\Controllers\dashboardController::class, 'editSneaker'])->name('editSneaker');
 // DASHBOARD -> SNEAKERS -> EDIT SNEAKER DATA ( SIZE, STOCK )
 Route::get('/dashboard/sneakers/sizestock/{id}', [App\Http\Controllers\dashboardController::class, 'editSizeStockPage'])->name('editSizeStockPage');
+Route::put('/dashboard/sneakers/sizestock/{id}', [App\Http\Controllers\dashboardController::class, 'editSizeStock'])->name('editSizeStock');
 
 Route::get('/register', function() {
     return Inertia::render('Register');
