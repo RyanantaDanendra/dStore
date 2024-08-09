@@ -8,6 +8,7 @@ use App\Models\Sneaker;
 use App\Models\User;
 use App\Models\Size;
 use App\Models\Image;
+use Illuminate\Support\Facades\Storage;
 
 class dashboardController extends Controller
 {
@@ -27,10 +28,12 @@ class dashboardController extends Controller
         $sneakerId = Sneaker::pluck('id');
 
         $sizes = Size::whereIn('id_sneaker', $sneakerId)->get();
+        $images = Image::whereIn('id_sneaker', $sneakerId)->get();
 
         return Inertia::render('Dashboard/Sneakers', [
             'sneakers' => $sneakers,
             'sizes' => $sizes,
+            'images' => $images,
         ]);
     }
 
@@ -147,6 +150,26 @@ class dashboardController extends Controller
         $size->update($validatedData);
 
         return redirect()->route('dashboard.sneakers')->with('success', 'Sneaker data updated successfully!');
+    }
+
+    public function deleteSneaker($id) {
+        $sneaker = Sneaker::find($id);
+
+        if($sneaker) {
+            // FIND IMAGE PATH AND DELETE IMAGE IN STORAGE
+            $imagePath = $sneaker->image_path;
+            $path = 'public/image' . $imagePath;
+    
+            if(Storage::exists($path)) {
+                Storage::delete($path);
+            }
+    
+            // DELETE SNEAKER SIZE
+            $sizes = Size::whereIn('id_sneaker', $sneaker)->delete();
+
+            // DELETE SNEAKER DATA ( NAME, BRAND, CONDITION )
+            $sneaker->delete();
+        }
     }
 }
 
