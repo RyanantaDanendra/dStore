@@ -152,6 +152,7 @@ class dashboardController extends Controller
         return redirect()->route('dashboard.sneakers')->with('success', 'Sneaker data updated successfully!');
     }
 
+    // DASHBOARD -> SNEAKERS -> DELETE
     public function deleteSneaker($id) {
         $sneaker = Sneaker::find($id);
 
@@ -171,5 +172,40 @@ class dashboardController extends Controller
             $sneaker->delete();
         }
     }
+
+    public function deleteSizeStock($id) {
+        // FIND SNEAKER ID
+        $sneaker = Sneaker::find($id);
+
+        // CHECK IF THERE'S A SIZE AND STOCK DATA BASED ON THE SNEAKER ID
+        if(Size::whereIn('id_sneaker', $sneaker)) {
+            $sizes = Size::whereIn('id_sneaker', $sneaker)->delete();
+        }
+    }
+
+    public function deleteImage($id) {
+        $image = Image::find($id);
+
+        // if (!$sneaker) {
+        //     return response()->json(['message' => 'Sneaker not found'], 404);
+        // }
+        
+        // if (!$sneaker->image) {
+        //     return response()->json(['message' => 'Image not found'], 404);
+        // }
+        
+        // Proceed with deletion
+        $path = $image->image;
+        // dd($path);
+        
+        if (Storage::disk('public')->exists($path)) {
+            Storage::disk('public')->delete($path);
+        } else {
+            return response()->json(['message' => 'File does not exist'], 404);
+        }
+        
+        $image->delete();
+    }
+    
 }
 
