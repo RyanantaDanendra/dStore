@@ -44,6 +44,11 @@ Route::delete('/dashboard/sneaker/delete/{id}', [App\Http\Controllers\dashboardC
 Route::delete('/dashboard/sneakers/delete/{id}', [App\Http\Controllers\dashboardController::class, 'deleteSizeStock'])->name('deleteSizeStock');
 Route::delete('/dashboard/sneakers/{id}', [App\Http\Controllers\dashboardController::class, 'deleteImage'])->name('deleteImage');
 
+// DASHBOARD -> USERS
+Route::get('/dashboard/users', [App\Http\Controllers\dashboardController::class, 'usersPage'])->name('usersPage');
+// DASHBOARD -> USERS -> STATUS
+Route::put('/dashboard/users/changestatus/{id}', [App\Http\Controllers\dashboardController::class, 'changeStatus'])->name('changeStatus');
+
 Route::get('/register', function() {
     return Inertia::render('Register');
 })->name('register');

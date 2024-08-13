@@ -1,3 +1,4 @@
+import { Inertia } from '@inertiajs/inertia';
 import { Link } from "@inertiajs/react";
 
 const DashboardLayout = ({ auth, children }) => {
@@ -10,6 +11,7 @@ const DashboardLayout = ({ auth, children }) => {
                         <Link href="/dashboard/users">Users</Link>
                         <Link href='/dashboard/sneakers'>Sneakers</Link>
                         <Link>Apparels</Link>
+                        <Link href={route('logout')} method="post" as="button" className="w-14">Logout</Link>
                     </div>
                 </div>
                 { children }

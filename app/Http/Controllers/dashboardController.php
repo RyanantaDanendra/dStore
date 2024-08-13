@@ -206,6 +206,26 @@ class dashboardController extends Controller
         
         $image->delete();
     }
+
+    // DASHBOARD -> USERS
+    public function usersPage() {
+        $users = User::all();
+
+        return Inertia::render('Dashboard/Users', [
+            'users' => $users,
+        ]);
+    }
+
+    // DASHBOARD -> USERS -> CHANGE sTATUS
+    public function changeStatus($id) {
+        $user = User::find($id);
+
+        $change = $user->status === 'active' ? 'unactive' : 'active';
+
+        $user->update([
+            'status' => $change,
+        ]);
     
+    }
 }
 
