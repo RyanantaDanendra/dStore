@@ -9,7 +9,7 @@ const DashboardLayout = ({ auth, children }) => {
                     <div className="links flex flex-col text-justify mt-12 ps-5 text-l gap-2">
                         <Link href="/dashboard/users">Users</Link>
                         <Link href='/dashboard/sneakers'>Sneakers</Link>
-                        <Link>Apparels</Link>
+                        <Link href="/dashboard/apparels">Apparels</Link>
                         <Link href={route('logout')} method="post" as="button" className="w-14">Logout</Link>
                     </div>
                 </div>

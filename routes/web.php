@@ -50,6 +50,9 @@ Route::delete('/dashboard/sneakers/{id}', [App\Http\Controllers\dashboardControl
 Route::get('/dashboard/users', [App\Http\Controllers\dashboardController::class, 'usersPage'])->name('usersPage');
 // DASHBOARD -> USERS -> STATUS
 Route::put('/dashboard/users/changestatus/{id}', [App\Http\Controllers\dashboardController::class, 'changeStatus'])->name('changeStatus');
+
+// DASHBOARD -> APPARELS
+Route::get('/dashboard/apparels', [App\Http\Controllers\dashboardController::class, 'apparelsPage'])->name('apparelsPage');
 });
 
 

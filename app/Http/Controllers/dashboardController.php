@@ -8,6 +8,7 @@ use App\Models\Sneaker;
 use App\Models\User;
 use App\Models\Size;
 use App\Models\Image;
+use App\Models\Apparel;
 use Illuminate\Support\Facades\Storage;
 
 class dashboardController extends Controller
@@ -15,10 +16,12 @@ class dashboardController extends Controller
     public function index() {
         $sneakers = Sneaker::all();
         $totalUsers = User::count();
+        $totalApparels = Apparel::count();
 
         return Inertia::render('Dashboard', [
             'sneakers' => $sneakers,
             'totalUsers' => $totalUsers,
+            'totalApparels' => $totalApparels,
         ]);
     }
 
@@ -226,6 +229,11 @@ class dashboardController extends Controller
             'status' => $change,
         ]);
     
+    }
+
+    // DASHBOARD -> APPARELS
+    public function apparelsPage() {
+        Return Inertia::render('Dashboard/Apparels');
     }
 }
 

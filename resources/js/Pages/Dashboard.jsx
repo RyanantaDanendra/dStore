@@ -1,7 +1,7 @@
 import { Head } from '@inertiajs/react';
 import DashboardLayout from './components/DashboardLayout';
 
-export default function Dashboard({ auth, sneakers, totalUsers }) {
+export default function Dashboard({ auth, sneakers, totalUsers, totalApparels }) {
     const sneakersTotal = sneakers ? sneakers.length : 0;
 
     if (auth.user.as == 'admin') {
@@ -14,6 +14,10 @@ export default function Dashboard({ auth, sneakers, totalUsers }) {
                         <div className="sneakersTotal">
                             <h1>Sneakers</h1>
                             <p>{ sneakersTotal }</p>
+                        </div>
+                        <div className="apparelsTotal">
+                            <h1>Apparels</h1>
+                            <p>{ totalApparels }</p>
                         </div>
                         <div className="usersTotal">
                             <h1>Users</h1>
