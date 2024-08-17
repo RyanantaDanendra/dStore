@@ -233,7 +233,21 @@ class dashboardController extends Controller
 
     // DASHBOARD -> APPARELS
     public function apparelsPage() {
-        Return Inertia::render('Dashboard/Apparels');
+        // FETCH ALL APPARELS DATA
+        $apparels = Apparel::all();
+        // FETCH APPAREL ID
+        $apparelid = Apparel::pluck('id');
+
+        // FETCH APPAREL SIZE BASED ON THE APPAREL ID
+        $sizes = Size::whereIn('apparel_id', $apparelid)->get();
+        // FETCH APPAREL IMAGES BASED ON THE APPAREL ID
+        $images = Image::whereIn('apparel_id', $apparelid)->get();
+
+        return Inertia::render('Dashboard/Apparels', [
+            'apparels' => $apparels,
+            'size' => $sizes, 
+            'images' => $images
+        ]);
     }
 }
 
