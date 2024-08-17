@@ -1,7 +1,7 @@
 import { Inertia } from '@inertiajs/inertia';
 import DashboardLayout from "../components/DashboardLayout"
 
-const Users = ({ users, id }) => {
+const Users = ({ users, id, auth }) => {
     const handlechangeStatus = (id) => {
         if(window.confirm('Are you sure you want to change user status?')) {
             Inertia.put(route('changeStatus', {id}), {
@@ -81,27 +81,32 @@ const Users = ({ users, id }) => {
         );
     })
 
-    return (
-        <DashboardLayout>
-            <div className="container p-8">
-                <h1>Users Table</h1>
-                <table>
-                    <thead>
-                        <tr className="border-b-black border-b-2 border-opacity-30">
-                            <th className="w-12 text-center">No. </th>
-                            <th className="w-12 text-center">Name </th>
-                            <th className="w-12 text-center">Email </th>
-                            <th className="w-12 text-center">As </th>
-                            <th className="w-12 text-center">Status </th>
-                            <th className="w-12 text-center">Action </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        { data }
-                    </tbody>
-                </table>
-            </div>
-        </DashboardLayout>
-    );
+    if(auth.user.as == 'admin') {
+        return (
+            <DashboardLayout>
+                <div className="container p-8">
+                    <h1>Users Table</h1>
+                    <table>
+                        <thead>
+                            <tr className="border-b-black border-b-2 border-opacity-30">
+                                <th className="w-12 text-center">No. </th>
+                                <th className="w-12 text-center">Name </th>
+                                <th className="w-12 text-center">Email </th>
+                                <th className="w-12 text-center">As </th>
+                                <th className="w-12 text-center">Status </th>
+                                <th className="w-12 text-center">Action </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            { data }
+                        </tbody>
+                    </table>
+                </div>
+            </DashboardLayout>
+        );
+    } else {
+        return <p>Sorry, you are not an admin!</p>
+    }
+
 }
 export default Users

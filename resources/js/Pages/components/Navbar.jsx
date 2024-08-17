@@ -8,17 +8,17 @@ import { useState } from 'react';
 
 
 const Navbar = ({ auth }) => {
+    console.log(auth);
+    const [modalopen, setModalOpen] = useState(false);
     
+    const openModal = () => { setModalOpen(true); }
+    const closeModal = () => { setModalOpen(false); }
 
-    const isLoggedIn = () => {
-        if (auth) {
-            const [modalopen, setModalOpen] = useState(false);
-
-            const openModal = () => { setModalOpen(true); }
-            const closeModal = () => { setModalOpen(false); }
+    const renderAuthLink = () => {
+        if (auth && auth.user) {
             return (
                 <>
-                    <p className='cursor-pointer' id='userName' onClick={openModal}>{ auth.name }</p>
+                    <p className='cursor-pointer' id='userName' onClick={openModal}>{ auth.user.name }</p>
                     <Modal show={modalopen} onClose={closeModal}>
                         <p className='font-bold text-xl'>{ auth.name }</p>
                         <Link href='/profile'>Profile</Link>
@@ -39,7 +39,7 @@ const Navbar = ({ auth }) => {
                     <Link href='/'>Home</Link>
                     <Link href="/sneakers">Sneakers</Link>
                     <Link href='/apparels'>Apparels</Link>
-                    { isLoggedIn() }
+                    { renderAuthLink() }
                 </div>
             </nav> 
         </>

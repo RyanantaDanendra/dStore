@@ -1,4 +1,3 @@
-import { Inertia } from '@inertiajs/inertia';
 import { Link } from "@inertiajs/react";
 
 const DashboardLayout = ({ auth, children }) => {

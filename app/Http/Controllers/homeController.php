@@ -9,10 +9,6 @@ use Illuminate\Support\Facades\Auth;
 class homeController extends Controller
 {
     public function index() {
-        $auth = Auth::user();
-
-        return Inertia::render('Home', [
-            'auth' => $auth,
-        ]);
+        return Inertia::render('Home');
     }
 }
