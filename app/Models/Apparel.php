@@ -11,6 +11,12 @@ class Apparel extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'brand', 
+        'condition',
+    ];
+
     // RELATIONS
     public function size(): HasMany {
         return $this->HasMany(Size::class);

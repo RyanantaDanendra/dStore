@@ -239,15 +239,36 @@ class dashboardController extends Controller
         $apparelid = Apparel::pluck('id');
 
         // FETCH APPAREL SIZE BASED ON THE APPAREL ID
-        $sizes = Size::whereIn('apparel_id', $apparelid)->get();
+        $sizes = Size::whereIn('id_apparel', $apparelid)->get();
         // FETCH APPAREL IMAGES BASED ON THE APPAREL ID
-        $images = Image::whereIn('apparel_id', $apparelid)->get();
+        $images = Image::whereIn('id_apparel', $apparelid)->get();
 
         return Inertia::render('Dashboard/Apparels', [
             'apparels' => $apparels,
-            'size' => $sizes, 
+            'sizes' => $sizes, 
             'images' => $images
         ]);
+    }
+
+    // DASHBOARD -> APPARELS -> ADD APPAREL
+    public function addApparelPage() {
+        return Inertia::render('Dashboard/AddApparel');
+    }
+
+    public function addApparel(Request $request) {
+        $valodateddata = $request->validate([
+            'name' => 'required|string|max:50',
+            'brand' => 'required|string|max:30',
+            'condition' => 'required|string|max:20',
+        ]);
+
+        Apparel::create([
+            'name' => $request->name,
+            'brand' => $request->brand,
+            'condition' => $request->condition,
+        ]);
+
+        return redirect()->route('apparelsPage')->with('success', 'Apparel Added successfully');
     }
 }
 

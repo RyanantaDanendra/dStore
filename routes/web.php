@@ -53,6 +53,12 @@ Route::put('/dashboard/users/changestatus/{id}', [App\Http\Controllers\dashboard
 
 // DASHBOARD -> APPARELS
 Route::get('/dashboard/apparels', [App\Http\Controllers\dashboardController::class, 'apparelsPage'])->name('apparelsPage');
+
+// DASHBOARD -> APPARELS -> ADD APPAREL
+Route::get('/dashboard/addapparel', [App\Http\Controllers\dashboardController::class, 'addApparelPage'])->name('addApparelPage');
+Route::post('/dashboard/addapparel', [App\Http\Controllers\dashboardController::class, 'addApparel'])->name('addApparel');
+// DASHBOARD -> APPARELS -> ADD APPAREL SIZE AND STOCK
+
 });
 
 
