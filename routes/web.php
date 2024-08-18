@@ -58,7 +58,11 @@ Route::get('/dashboard/apparels', [App\Http\Controllers\dashboardController::cla
 Route::get('/dashboard/addapparel', [App\Http\Controllers\dashboardController::class, 'addApparelPage'])->name('addApparelPage');
 Route::post('/dashboard/addapparel', [App\Http\Controllers\dashboardController::class, 'addApparel'])->name('addApparel');
 // DASHBOARD -> APPARELS -> ADD APPAREL SIZE AND STOCK
-
+Route::get('/dashboard/addapparelsize/{id}', [App\Http\Controllers\dashboardController::class, 'addApparelSizePage'])->name('addApparelSizePage');
+Route::post('/dashboard/addapparelsize/{id}', [App\Http\Controllers\dashboardController::class, 'addApparelSize'])->name('addApparelSize');
+// DASHBOARD -> APPARELS -> ADD IMAGEs
+Route::get('/dashboard/addapparelimages/{id}', [App\Http\Controllers\dashboardController::class, 'addApparelImagespage'])->name('addApparelImagespage');
+Route::post('/dashboard/addApparelImages/{id}', [App\Http\Controllers\dashboardController::class, 'addApparelImages'])->name('addApparelImages');
 });
 
 

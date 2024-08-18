@@ -270,5 +270,52 @@ class dashboardController extends Controller
 
         return redirect()->route('apparelsPage')->with('success', 'Apparel Added successfully');
     }
+
+    public function addApparelSizePage($id) {
+        return Inertia::render('Dashboard/AddApparelSize', [
+            'id' => $id,
+        ]);
+    }
+
+    public function addApparelSize($id, Request $request) {
+        $validatedData = $request->validate([
+            'size' => 'required|integer|max:70',
+            'stock' => 'required|integer|max:100',
+        ]);
+
+        Size::create([
+            'id_apparel' => $id,
+            'size' => $request->size,
+            'stock' => $request->stock,
+        ]);
+
+        return redirect()->route('apparelsPage')->with('success', 'Size and stock added successfully!');
+    }
+
+    // ADD APPAREL IMAGES
+    public function addApparelImagespage($id) {
+        return Inertia::render('Dashboard/AddApparelImages', [
+            'id' => $id,
+        ]);
+    }
+
+    public function addApparelImages($id, Request $request) {
+        $validatedData = $request->validate([
+            'image' => 'required|image|mimes:jpeg,jpg,png',
+        ]);
+
+        if($request->hasFile('image')) {
+            $path = $request->file('image')->store('image', 'public');
+        } else {
+            return redirect()->back()->withErrors(['image' => 'Image file is required.']);
+        }
+
+        Image::create([
+            'id_apparel' => $id,
+            'image' => $path,
+        ]);
+
+        return redirect()->route('apparelsPage');
+    }
 }
 
