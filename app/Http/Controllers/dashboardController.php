@@ -317,5 +317,32 @@ class dashboardController extends Controller
 
         return redirect()->route('apparelsPage');
     }
+
+    public function editApparelPage($id) {
+        $apparel = Apparel::find($id);
+
+        return Inertia::render('Dashboard/EditApparel', [
+            'id' => $id,
+            'apparel' => $apparel,
+        ]);
+    }
+
+    public function editApparel($id, Request $request) {
+        // APPAREL DATA REQUIREMET
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:50',
+            'brand' => 'required|string|max:30',
+            'condition' => 'required|string|max:20',
+        ]);
+
+        // FIND APPAREL DATA BASED ON THE ID
+        $apparel = Apparel::find($id);
+
+        // UPDATE APPAREK DATA
+        $apparel->update($validatedData);
+
+        // RETURN REDIRECT TO APPARELS TABLE PAGE
+        return redirect()->route('apparelsPage');
+    }
 }
 

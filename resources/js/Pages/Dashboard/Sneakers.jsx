@@ -110,7 +110,7 @@ const Sneakers = ({ sneakers, sizes, images, auth}) => {
         return (
             <>
                 <DashboardLayout>
-                    <div className="container w-full p-8">
+                    <div className="container w-full p-8 ms-56">
                         <div className="flex justify-between">
                             <h1>Sneakers Table</h1>
                             <Link href='/dashboard/addsneaker' title="Add Sneaker"><svg xmlns="http://www.w3.org/2000/svg" className="w-8" viewBox="0 0 512 512"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM232 344l0-64-64 0c-13.3 0-24-10.7-24-24s10.7-24 24-24l64 0 0-64c0-13.3 10.7-24 24-24s24 10.7 24 24l0 64 64 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-64 0 0 64c0 13.3-10.7 24-24 24s-24-10.7-24-24z"/></svg></Link>

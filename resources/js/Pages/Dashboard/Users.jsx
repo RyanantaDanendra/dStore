@@ -84,7 +84,7 @@ const Users = ({ users, id, auth }) => {
     if(auth.user.as == 'admin') {
         return (
             <DashboardLayout>
-                <div className="container p-8">
+                <div className="container p-8 ms-56">
                     <h1>Users Table</h1>
                     <table>
                         <thead>
