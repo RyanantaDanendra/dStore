@@ -344,5 +344,11 @@ class dashboardController extends Controller
         // RETURN REDIRECT TO APPARELS TABLE PAGE
         return redirect()->route('apparelsPage');
     }
+
+    public function editApparelSizeAndStockPage($id) {
+        return Inertia::render('Dashboard/EditApparelSizeStock', [
+            'id' => $id,
+        ]);
+    }
 }
 

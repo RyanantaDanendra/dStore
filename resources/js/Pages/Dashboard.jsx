@@ -10,7 +10,7 @@ export default function Dashboard({ auth, sneakers, totalUsers, totalApparels })
                 <Head title="Dashboard" />
 
                 <DashboardLayout auth={auth}>
-                    <div className="container w-full p-8 flex gap-8">
+                    <div className="container w-full p-8 flex gap-8 ms-56">
                         <div className="sneakersTotal">
                             <h1>Sneakers</h1>
                             <p>{ sneakersTotal }</p>

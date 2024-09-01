@@ -66,6 +66,8 @@ Route::post('/dashboard/addApparelImages/{id}', [App\Http\Controllers\dashboardC
 // DASHBOAR -> APPARELS -> EDIT APPARELS ( NAME, BRAND, CONDITION )
 Route::get('/dashboard/apparels/editapparel/{id}', [App\Http\Controllers\dashboardController::class, 'editApparelPage'])->name('editApparelPage');
 Route::put('/dashboard/apparels/editapparel/{id}', [App\Http\Controllers\dashboardController::class, 'editApparel'])->name('editApparel');
+// DASHBOARD -> APPARELS -> EDIT APPAREL SIZE AND STOCK
+Route::get('/dashboard/apparel/editapparelsizeandstock/{id}', [App\Http\Controllers\dashboardController::class, 'editApparelSizeAndStockPage'])->name('editSizeAndStockPage');
 });
 
 
