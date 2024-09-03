@@ -68,6 +68,7 @@ Route::get('/dashboard/apparels/editapparel/{id}', [App\Http\Controllers\dashboa
 Route::put('/dashboard/apparels/editapparel/{id}', [App\Http\Controllers\dashboardController::class, 'editApparel'])->name('editApparel');
 // DASHBOARD -> APPARELS -> EDIT APPAREL SIZE AND STOCK
 Route::get('/dashboard/apparel/editapparelsizeandstock/{id}', [App\Http\Controllers\dashboardController::class, 'editApparelSizeAndStockPage'])->name('editSizeAndStockPage');
+Route::put('/dashboard/apparel/editapparelsizeandstock/{id}', [App\Http\Controllers\dashboardController::class, 'editApparelSizeStock'])->name('editApparelSizeStock');
 });
 
 

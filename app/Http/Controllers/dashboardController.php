@@ -346,9 +346,29 @@ class dashboardController extends Controller
     }
 
     public function editApparelSizeAndStockPage($id) {
+        $size = Size::find($id);
+
         return Inertia::render('Dashboard/EditApparelSizeStock', [
             'id' => $id,
+            'size' => $size,
         ]);
+    }
+
+    public function editApparelsizeStock($id, Request $request) {
+        // APPAREL DATA REQUIREMET
+        $validatedData = $request->validate([
+            'size' => 'required|integer|max:70',
+            'stock' => 'required|integer|max:100',
+        ]);
+
+        // FIND APPAREL ID
+        $size = Size::find($id);
+
+        // UPDATE THE DATA
+        $size->update($validatedData);
+
+        // RETURN TO APPARELS PAGE
+        return redirect()->route('apparelsPage');
     }
 }
 
