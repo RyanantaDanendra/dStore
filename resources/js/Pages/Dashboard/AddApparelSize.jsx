@@ -14,7 +14,7 @@ const AddApparelSize = ({id}) => {
 
     return (
         <DashboardLayout>
-            <div className="container w-full p-8">
+            <div className="container w-full p-8 ms-56">
                 <h1>Add Apparel Size and Stock</h1>
 
                 <form onSubmit={handleSubmit}>

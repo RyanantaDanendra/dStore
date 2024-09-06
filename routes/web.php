@@ -69,6 +69,10 @@ Route::put('/dashboard/apparels/editapparel/{id}', [App\Http\Controllers\dashboa
 // DASHBOARD -> APPARELS -> EDIT APPAREL SIZE AND STOCK
 Route::get('/dashboard/apparel/editapparelsizeandstock/{id}', [App\Http\Controllers\dashboardController::class, 'editApparelSizeAndStockPage'])->name('editSizeAndStockPage');
 Route::put('/dashboard/apparel/editapparelsizeandstock/{id}', [App\Http\Controllers\dashboardController::class, 'editApparelSizeStock'])->name('editApparelSizeStock');
+// DASHBOARD -> APPAREL -> DELETE SIZE AND STOCK
+Route::delete('/dashboard/apparel/delete/sizeandstock/{id}', [App\Http\Controllers\dashboardController::class, 'deleteApparelSizeAndStock'])->name('deleteApparelSizeAndStock');
+// DASHBOARD -> APPAREL -> DELETE
+Route::delete('/dashboard/apparel/delete/{id}', [App\Http\Controllers\dashboardController::class, 'deleteApparel'])->name('deleteApparel');
 });
 
 

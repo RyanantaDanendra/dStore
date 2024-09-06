@@ -178,11 +178,11 @@ class dashboardController extends Controller
 
     public function deleteSizeStock($id) {
         // FIND SNEAKER ID
-        $sneaker = Sneaker::find($id);
+        $size = Size::find($id);
 
         // CHECK IF THERE'S A SIZE AND STOCK DATA BASED ON THE SNEAKER ID
-        if(Size::whereIn('id_sneaker', $sneaker)) {
-            $sizes = Size::whereIn('id_sneaker', $sneaker)->delete();
+        if($size) {
+            $size->delete();
         }
     }
 
@@ -369,6 +369,36 @@ class dashboardController extends Controller
 
         // RETURN TO APPARELS PAGE
         return redirect()->route('apparelsPage');
+    }
+
+    public function deleteApparelSizeAndStock($id) {
+        $size = Size::find($id);
+
+        if($size) {
+            $size->delete();
+        }
+    }
+
+    public function deleteApparel($id) {
+        $apparel = Apparel::find($id);
+
+        if($apparel) {
+            // FIND IMAGE PATH AND DELETE IMAGE IN STORAGE
+            $imagePath = $apparel->image_path;
+            $path = 'public/image' . $imagePath;
+    
+            if(Storage::exists($path)) {
+                Storage::delete($path);
+            }
+    
+            if(Size::whereIn('id_apparel', $apparel)) {
+                // DELETE SNEAKER SIZE
+                $sizes = Size::whereIn('id_apparel', $apparel)->delete();
+            }
+
+            // DELETE SNEAKER DATA ( NAME, BRAND, CONDITION )
+            $apparel->delete();
+        }
     }
 }
 
