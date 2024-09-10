@@ -7,7 +7,8 @@ const HomeHero = () => {
         <>
             <div className="container w-full h-full flex pt-24">
                 <div id="homeHero-text" className="w-1/2 mt-32 ms-16">
-                    <h1 className="text-5xl ms-18"><span className='homeHero-stroke text-transparent'>Find your perfect</span> <br />look at unbeatable price!</h1>
+                    <h1 className="text-5xl ms-18">D ' Store</h1>
+                    <h2 className='text-lg'>Your destination for rare sneakers and premium apparels -- Bringing Exclusive Drops and Iconic Streetwear to Elevate Your Style</h2>
                     <div id="homeHero-buttons" className=' mt-8 flex gap-6 text-white'>
                         <button className='py-5 px-6 secondary-color text-sm'>Sneakers</button>
                         <button className='py-5 px-6 secondary-color text-sm'>Apparels</button>

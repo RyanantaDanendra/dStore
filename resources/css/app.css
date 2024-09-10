@@ -22,7 +22,7 @@
     background-color: #20361C;
 }
 
-.homeHero-stroke, .homeSneakers-stroke {
+.homeSneakers-stroke {
     -webkit-text-stroke-width: 3px;
     -webkit-text-stroke-color: #759A6C;
 }

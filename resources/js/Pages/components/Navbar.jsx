@@ -8,7 +8,6 @@ import { useState } from 'react';
 
 
 const Navbar = ({ auth }) => {
-    console.log(auth);
     const [modalopen, setModalOpen] = useState(false);
     
     const openModal = () => { setModalOpen(true); }
@@ -33,12 +32,12 @@ const Navbar = ({ auth }) => {
 
     return (
         <>
-            <nav className="primary-color h-24 flex justify-between px-3 items-center fixed w-full">
-                <h1 className="text-3xl text-white">D'Store</h1>
-               <div className="links flex gap-5 text-white">
-                    <Link href='/'>Home</Link>
-                    <Link href="/sneakers">Sneakers</Link>
-                    <Link href='/apparels'>Apparels</Link>
+            <nav className="primary-color h-20 flex justify-between px-5 items-center fixed w-full">
+                <h1 className="text-2xl text-white font-bold">D'Store</h1>
+               <div className="links flex gap-3 text-white">
+                    <Link href='/' className='text-md'>Home</Link>
+                    <Link href="/sneakers" className='text-md'>Sneakers</Link>
+                    <Link href='/apparels' className='text-md'>Apparels</Link>
                     { renderAuthLink() }
                 </div>
             </nav> 
