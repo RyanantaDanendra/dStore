@@ -384,7 +384,7 @@ class dashboardController extends Controller
 
         if($apparel) {
             // FIND IMAGE PATH AND DELETE IMAGE IN STORAGE
-            $imagePath = $apparel->image_path;
+            $imagePath = $apparel->image;
             $path = 'public/image' . $imagePath;
     
             if(Storage::exists($path)) {
@@ -399,6 +399,20 @@ class dashboardController extends Controller
             // DELETE SNEAKER DATA ( NAME, BRAND, CONDITION )
             $apparel->delete();
         }
+    }
+
+    public function deleteApparelImage($id) {
+        $image = Image::find($id);
+
+        $path = $image->image;
+
+        if(Storage::disk('public')->exists($path)) {
+            Storage::disk('public')->delete($path);
+        } else {
+            return response()->json(['message' => 'Image does not exsist'], 404);
+        }
+
+        $image->delete();
     }
 }
 

@@ -22,8 +22,8 @@ class Apparel extends Model
         return $this->HasMany(Size::class);
     }
 
-    public function image(): HasMany {
-        return $this->hasMany(Image::class);
+    public function image(): HasOne {
+        return $this->hasOne(Image::class);
     }
 
     public function order(): HasMany {

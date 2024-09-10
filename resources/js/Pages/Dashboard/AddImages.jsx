@@ -22,7 +22,7 @@ const AddImages = ({id}) => {
     return (
         <>
             <DashboardLayout>
-                <div className="container p-8">
+                <div className="container p-8 ms-56">
                     <h1>Add Images</h1>
                     <form onSubmit={handleSubmit}>
                         <ul className="mt-8">

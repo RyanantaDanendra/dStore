@@ -73,6 +73,8 @@ Route::put('/dashboard/apparel/editapparelsizeandstock/{id}', [App\Http\Controll
 Route::delete('/dashboard/apparel/delete/sizeandstock/{id}', [App\Http\Controllers\dashboardController::class, 'deleteApparelSizeAndStock'])->name('deleteApparelSizeAndStock');
 // DASHBOARD -> APPAREL -> DELETE
 Route::delete('/dashboard/apparel/delete/{id}', [App\Http\Controllers\dashboardController::class, 'deleteApparel'])->name('deleteApparel');
+// DSASHBOARD => APPAREL -> DELETE IMAGE
+Route::delete('/dashboard/apparel/delete/image/{id}', [App\Http\Controllers\dashboardController::class, 'deleteApparelImage'])->name('deleteApparelImage');
 });
 
 
