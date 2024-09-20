@@ -21,6 +21,7 @@
     },
     "dependencies": {
         "@inertiajs/inertia-react": "^0.8.1",
+        "react-responsive-carousel": "^3.2.23",
         "react-router-dom": "^6.25.0"
     }
 }

@@ -91,7 +91,7 @@ class dashboardController extends Controller
 
     public function addImages($id, Request $request) {
         $validatedData = $request->validate([
-            'image' => 'required|image|mimes:jpeg,jpg,png',
+            'image' => 'required|image|mimes:png',
         ]);
 
         if($request->hasFile('image')) {
@@ -301,7 +301,7 @@ class dashboardController extends Controller
 
     public function addApparelImages($id, Request $request) {
         $validatedData = $request->validate([
-            'image' => 'required|image|mimes:jpeg,jpg,png',
+            'image' => 'required|image|mimes:png',
         ]);
 
         if($request->hasFile('image')) {

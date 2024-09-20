@@ -8,14 +8,14 @@ import HomeSneakers from "./components/HomeSneakers";
 import Layout from "./components/Layout";
 import { Link } from "@inertiajs/react";
 
-function Home({ auth }) {
+function Home({ auth, images, sneakers }) {
     if (auth.user) {
         if(auth.user.status == 'active') {
             return (
                 <>
                     <Layout auth={auth}>
                         <HomeHero />
-                        <HomeSneakers />
+                        <HomeSneakers images={images} sneakers={sneakers} />
                     </Layout>
                 </>
             );
@@ -34,7 +34,7 @@ function Home({ auth }) {
             <>
                 <Layout auth={auth}>
                     <HomeHero />
-                    <HomeSneakers />
+                    <HomeSneakers images={images} sneakers={sneakers} />
                 </Layout>
             </>
         );

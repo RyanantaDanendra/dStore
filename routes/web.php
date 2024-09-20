@@ -73,9 +73,12 @@ Route::put('/dashboard/apparel/editapparelsizeandstock/{id}', [App\Http\Controll
 Route::delete('/dashboard/apparel/delete/sizeandstock/{id}', [App\Http\Controllers\dashboardController::class, 'deleteApparelSizeAndStock'])->name('deleteApparelSizeAndStock');
 // DASHBOARD -> APPAREL -> DELETE
 Route::delete('/dashboard/apparel/delete/{id}', [App\Http\Controllers\dashboardController::class, 'deleteApparel'])->name('deleteApparel');
-// DSASHBOARD => APPAREL -> DELETE IMAGE
+// DASHBOARD => APPAREL -> DELETE IMAGE
 Route::delete('/dashboard/apparel/delete/image/{id}', [App\Http\Controllers\dashboardController::class, 'deleteApparelImage'])->name('deleteApparelImage');
 });
+
+// SNEAKER DETAILS
+Route::get('/sneaker/details/{id}', [App\Http\Controllers\sneakersController::class, 'sneakerDetailsPage'])->name('sneakerDetailsPage');
 
 
 Route::get('/register', function() {

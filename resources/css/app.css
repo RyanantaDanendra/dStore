@@ -43,3 +43,8 @@
     font-family: Poppins-bold;
 }
 
+.carousel .thumbs-wrapper .thumb {
+    width: 10px;
+    height: 100px;
+}
+
