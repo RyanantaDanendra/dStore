@@ -3,26 +3,54 @@ import { Link } from '@inertiajs/inertia-react';
 import '../../../css/app.css'
 import Sneakers from '../Sneakers';
 import Apparels from '../Apparels';
-import Modal from '@/Components/Modal';
 import { useState } from 'react';
+import { useEffect } from 'react';
 
 
 const Navbar = ({ auth }) => {
-    const [modalopen, setModalOpen] = useState(false);
-    
-    const openModal = () => { setModalOpen(true); }
-    const closeModal = () => { setModalOpen(false); }
+    const [open, setOpen] = useState(false);
+    const [visible, setVisible] = useState(false);
+
+    const togglePopOver = () => {
+        if(!open) {
+            setOpen(true);
+            setTimeout(() => setVisible(true), 10);
+        } else {
+            setOpen(false);
+            setTimeout(() => setVisible(false), 300);
+        }
+    }
+
+    useEffect(() => {   
+        const handleclickOutside = (event) => {
+            if(!event.target.closest('#popover') && !event.target.closest('#userName')) {
+                setOpen(false);
+                setVisible(false);
+                setTimeout(() => setOpen(false), 300)
+            }
+        };
+
+        document.addEventListener('click', handleclickOutside);
+        return () => {
+            document.removeEventListener('click', handleclickOutside);
+        };
+    }, [])
+
+    const popOver = () => {
+        return open ? (
+            <div id='popover' className={ `absolute flex items-center flex-col justify-center w-32 h-20 pb-2 bg-white right-10 top-14 shadow-md shadow-black popover-content ${visible ? 'fade-in' : 'fade-out'}` }>
+                <Link href='/profile' className='text-black w-full block text-center hover:bg-blue-600 hover:text-white duration-200 ease-out '>Profile</Link>
+                 <Link href='logout' method='post' as='button' className='text-black w-full block mx-auto hover:bg-blue-600 hover:text-white duration-200 ease-out'>Logout</Link>
+            </div>
+        ) : null
+    }
 
     const renderAuthLink = () => {
         if (auth && auth.user) {
             return (
                 <>
-                    <p className='cursor-pointer' id='userName' onClick={openModal}>{ auth.user.name }</p>
-                    <Modal show={modalopen} onClose={closeModal}>
-                        <p className='font-bold text-xl'>{ auth.name }</p>
-                        <Link href='/profile'>Profile</Link>
-                        <Link href='logout' method='post' as='button'>Logout</Link>
-                    </Modal>
+                    <p onClick={togglePopOver} className='cursor-pointer font-bold' id='userName'>{ auth.user.name }</p>
+                    {popOver()}
                 </>
             );
         } else {
