@@ -8,6 +8,7 @@ use App\Models\Sneaker;
 use App\Models\Size;
 use App\Models\Image;
 use App\Models\Order;
+use App\Models\Like;
 
 class sneakersController extends Controller
 {
@@ -52,5 +53,12 @@ class sneakersController extends Controller
         }
 
         return back()->with('success', 'Order placed successfully');
+    }
+
+    public function like($id) {
+        Like::create([
+            'id_user' => auth()->user()->id,
+            'id_sneaker' => $id,
+        ]);
     }
 }

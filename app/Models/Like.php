@@ -10,6 +10,11 @@ class Like extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'id_user',
+        'id_sneaker',
+    ];
+
     // RELATIONS
     public function user(): HasMany {
         return $this->hasMany(User::class);

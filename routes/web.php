@@ -81,6 +81,8 @@ Route::delete('/dashboard/apparel/delete/image/{id}', [App\Http\Controllers\dash
 Route::get('/sneaker/details/{id}', [App\Http\Controllers\sneakersController::class, 'sneakerDetailsPage'])->name('sneakerDetailsPage');
 // SNEAKER ORDER
 Route::post('/sneaker/details/{id}', [App\Http\Controllers\sneakersController::class, 'orderSneaker'])->name('orderSneaker')->middleware('auth');
+// SNEAKER LIKE
+Route::post('/sneaker/details/{id}', [App\Http\Controllers\sneakersController::class, 'like'])->name('like_sneaker')->middleware('auth');
 
 
 Route::get('/register', function() {
