@@ -10,16 +10,24 @@ class Order extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'id_user', 
+        'id_sneaker', 
+        'id_apparel',
+        'id_size', 
+        'quantity'
+    ];
+
     // RELATIONS
-    public function user():  HasMany {
-        return $this->hasMany(User::class);
+    public function user():  BelongsTo {
+        return $this->belongsTo(User::class);
     }
 
-    public function sneaker(): HasMany {
-        return $this->hasMany(Sneaker::class);
+    public function sneaker(): BelongsTo {
+        return $this->BelongsTo(Sneaker::class, 'id_sneaker');
     }
 
-    public function apparel(): HasMany {
-        return $this->hasMany(Apparel::class);
+    public function apparel(): BelongsTo {
+        return $this->BelongsTo(Apparel::class, 'id_apparel');
     }
 }

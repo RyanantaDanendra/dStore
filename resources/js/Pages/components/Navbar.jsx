@@ -38,9 +38,9 @@ const Navbar = ({ auth }) => {
 
     const popOver = () => {
         return open ? (
-            <div id='popover' className={ `absolute flex items-center flex-col justify-center w-32 h-20 pb-2 bg-white right-10 top-14 shadow-md shadow-black popover-content ${visible ? 'fade-in' : 'fade-out'}` }>
+            <div id='popover' className={ `absolute flex items-center flex-col justify-center w-24 h-20 pb-2 bg-white right-2 top-14 shadow-md shadow-black popover-content ${visible ? 'fade-in' : 'fade-out'}` }>
                 <Link href='/profile' className='text-black w-full block text-center hover:bg-blue-600 hover:text-white duration-200 ease-out '>Profile</Link>
-                 <Link href='logout' method='post' as='button' className='text-black w-full block mx-auto hover:bg-blue-600 hover:text-white duration-200 ease-out'>Logout</Link>
+                 <Link href='/logout' method='post' as='button' className='text-black w-full block mx-auto hover:bg-blue-600 hover:text-white duration-200 ease-out'>Logout</Link>
             </div>
         ) : null
     }
@@ -49,7 +49,7 @@ const Navbar = ({ auth }) => {
         if (auth && auth.user) {
             return (
                 <>
-                    <p onClick={togglePopOver} className='cursor-pointer font-bold' id='userName'>{ auth.user.name }</p>
+                    <svg xmlns="http://www.w3.org/2000/svg" className='w-5 cursor-pointer me-7' id='userName' onClick={togglePopOver} viewBox="0 0 448 512"><path fill="#ffffff" d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512l388.6 0c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304l-91.4 0z"/></svg>
                     {popOver()}
                 </>
             );
@@ -65,7 +65,7 @@ const Navbar = ({ auth }) => {
                <div className="links flex gap-3 text-white">
                     <Link href='/' className='text-md'>Home</Link>
                     <Link href="/sneakers" className='text-md'>Sneakers</Link>
-                    <Link href='/apparels' className='text-md'>Apparels</Link>
+                    <Link href='/apparels' className='text-md me-6'>Apparels</Link>
                     { renderAuthLink() }
                 </div>
             </nav> 

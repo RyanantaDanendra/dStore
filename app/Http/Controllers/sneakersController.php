@@ -7,6 +7,7 @@ use Inertia\Inertia;
 use App\Models\Sneaker;
 use App\Models\Size;
 use App\Models\Image;
+use App\Models\Order;
 
 class sneakersController extends Controller
 {
@@ -23,5 +24,33 @@ class sneakersController extends Controller
             'sizes' => $sizes,
             'images' => $images,
         ]);
+    }
+
+    public function orderSneaker($id, Request $request) {
+        // $validatedData = $request->validate([
+        //     'id_sneaker' => 'required|integer',
+        //     'id_apparel' => 'nullable|integer',
+        //     'id_size' => 'required|integer',
+        //     'quantity' => 'required|integer|min:1',
+        // ]);
+
+        Order::create([
+            'id_user' => auth()->user()->id,
+            'id_sneaker' => $id,
+            'id_size' => $request->id_size,
+            'quantity' => $request->quantity,
+        ]);
+
+        $size = Size::where('id_sneaker', $id)->where('id', $request->id_size)->first();
+
+        if($size) {
+            $size->stock -= $request->quantity;
+
+            $size->save();
+        } else {
+            return back()->withErrors(['size' => 'Size not found for this sneaker']);
+        }
+
+        return back()->with('success', 'Order placed successfully');
     }
 }

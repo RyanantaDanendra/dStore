@@ -16,6 +16,8 @@ return new class extends Migration
             $table->integer('id_user');
             $table->integer('id_sneaker')->nullable();
             $table->integer('id_apparel')->nullable();
+            $table->integer('id_size');
+            $table->integer('quantity');
             $table->timestamps();
         });
     }
