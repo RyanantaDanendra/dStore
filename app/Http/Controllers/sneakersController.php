@@ -18,12 +18,17 @@ class sneakersController extends Controller
 
         $sizes = Size::whereIn('id_sneaker', $sneakerId)->get();
         $images = Image::whereIn('id_sneaker', $sneakerId)->get();
+        $liked = null;
+        if(auth()->check()) {
+            $liked = Like::where('id_user', auth()->user()->id)->where('id_sneaker', $sneakerId)->exists();
+        }
 
         return Inertia::render('Sneakers/SneakerDetails', [
             'id' => $id,
             'sneaker' => $sneaker,
             'sizes' => $sizes,
             'images' => $images,
+            'liked' => $liked,
         ]);
     }
 
@@ -56,9 +61,15 @@ class sneakersController extends Controller
     }
 
     public function like($id) {
-        Like::create([
-            'id_user' => auth()->user()->id,
-            'id_sneaker' => $id,
-        ]);
+        $liked = Like::where('id_user', auth()->user()->id)->where('id_sneaker',  $id)->first();
+
+        if($liked) {
+            $liked->delete();
+        } else {
+            Like::create([
+                'id_user' => auth()->user()->id,
+                'id_sneaker' => $id,
+            ]);
+        }
     }
 }
