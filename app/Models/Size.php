@@ -18,8 +18,8 @@ class Size extends Model
     ];
 
     // RELATIONS
-    public function sneaker(): HasMany {
-        return $this->hasMany(Sneaker::class);
+    public function sneaker() {
+        return $this->belongsToMany(Sneaker::class, 'sneaker_size');
     }
 
     public function apparel(): HasMany {

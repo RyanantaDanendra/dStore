@@ -12,6 +12,32 @@ use App\Models\Like;
 
 class sneakersController extends Controller
 {
+    public function index(Request $request) {
+        $sneakers = Sneaker::all();
+        $sneakerId = Sneaker::pluck('id');
+
+        $images = Image::whereIn('id_sneaker', $sneakerId)->get();
+        
+        // SEARCH FUNCTION
+        $query = $request->search;
+
+        $searchSneaker = Sneaker::with('size')
+                        -> when($query, function($q) use ($query) {
+                            return $q->where('name', 'like', '%' . $query . '%')
+                            ->orWhere('brand', 'like', '%' . $query . '%')
+                            ->orWhereHas('size',  function($q) use ($query) {
+                                $q->where('size', 'like', '%' . $query . '%');
+                            });
+                        })->get();
+
+        return Inertia::render('Sneakers', [
+            'sneakers' => $query ? $searchSneaker : $sneakers,
+            'images' => $images,
+            'searchSneaker' => $searchSneaker,
+            'search' => $query,
+        ]);
+    }
+
     public function sneakerDetailsPage($id) {
         $sneaker = Sneaker::find($id);
         $sneakerId = Sneaker::pluck('id');

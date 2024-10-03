@@ -21,8 +21,8 @@ class Sneaker extends Model
     ];
 
     // RELATION
-    public function size(): BelongsTo {
-        return $this->belongsTo(Size::class);
+    public function size() {
+        return $this->belongsToMany(Size::class, 'sneaker_size');
     }
 
     public function image(): HasOne {

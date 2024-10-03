@@ -16,9 +16,7 @@ use Inertia\Inertia;
 
 Route::get('/', [App\Http\Controllers\homeController::class, 'index'])->name('home');
 
-Route::get('/sneakers', function() {
-    return Inertia::render('Sneakers');
-});
+Route::get('/sneakers', [App\Http\Controllers\sneakersController::class, 'index'])->name('sneakers');
 
 Route::middleware('auth')->group(function() {
 

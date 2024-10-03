@@ -59,3 +59,10 @@
     opacity: 0;
 }
 
+/* FLOATING */
+.card {
+    transition: transform .5s ease;
+}
+.card:hover {
+    transform:translateY(-10px)
+}
