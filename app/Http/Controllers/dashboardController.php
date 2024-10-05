@@ -158,6 +158,7 @@ class dashboardController extends Controller
     // DASHBOARD -> SNEAKERS -> DELETE
     public function deleteSneaker($id) {
         $sneaker = Sneaker::find($id);
+        $sneakerId = $sneaker->pluck('id');
 
         if($sneaker) {
             // FIND IMAGE PATH AND DELETE IMAGE IN STORAGE
@@ -169,7 +170,7 @@ class dashboardController extends Controller
             }
     
             // DELETE SNEAKER SIZE
-            $sizes = Size::whereIn('id_sneaker', $sneaker)->delete();
+            $sizes = Size::whereIn('id_sneaker', $sneakerId)->delete();
 
             // DELETE SNEAKER DATA ( NAME, BRAND, CONDITION )
             $sneaker->delete();

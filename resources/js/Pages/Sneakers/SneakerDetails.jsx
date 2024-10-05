@@ -10,6 +10,7 @@ import { useForm } from "@inertiajs/inertia-react";
 const SneakerDetails = ({ sneaker, id, sizes, images, auth, success, liked }) => {
     const sneakerImages = images.filter(image => image.id_sneaker == id);
     const sneakerId = sizes.filter(size => size.id_sneaker == id );
+    console.log(sneakerId.length);
     const [modalOpen, setModalOpen] = useState(false);
     const [maxStock, setMaxStock] = useState(0);
 
@@ -25,11 +26,11 @@ const SneakerDetails = ({ sneaker, id, sizes, images, auth, success, liked }) =>
         setModalOpen(false);
     }
 
-    const size = sizes.map(size => {
+    const size = sneakerId.map(size => {
         if(size.stock > 0) {
             return (
                 <ul key={size.id}>
-                    <li key={size.id}>Size : {size.size} Stock: {size.stock} pairs</li>
+                   <li key={size.id}>Size : {size.size} Stock: {size.stock} pairs</li>
                 </ul>
             );
         }
@@ -124,7 +125,7 @@ const SneakerDetails = ({ sneaker, id, sizes, images, auth, success, liked }) =>
                     <h1><span className="font-semibold">Name: </span>{sneaker.name}</h1>
                     <h3><span className="font-semibold">Brand: </span>{sneaker.brand}</h3>
                     <h3><span className="font-semibold">Condition: </span>{sneaker.condition}</h3>
-                    <h3><span className="font-semibold">Sizes available :</span> { sizes.length > 0 ? size : 'No size available' }</h3>
+                    <h3><span className="font-semibold">Sizes available :</span><br /> { sneakerId.length > 0 ? size : 'No size available' }</h3>
                     {
                         auth.user ? (
                             <button onClick={handleModalOpen} className="mt-3 px-5 py-2 secondary-color text-white">Buy Now</button>

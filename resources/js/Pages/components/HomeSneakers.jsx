@@ -25,19 +25,23 @@ const HomeSneakers = ({ images, sneakers }) => {
         }
 
         return (
-            <div className="cards h-screen">
+            <>
                 {imageData()}
-            </div>
+            </>
         );
     })
 
     return (
         <>
-            <div className="container w-full h-full mt-32" id='homeSneakers'>
+            <div className="container w-full h-full mt-32 pb-12" id='homeSneakers'>
                 <h1 className='homeSneakers-stroke text-5xl text-transparent text-center'>Sneakers</h1>
-                <div className="cards w-full h-full flex flex-wrap gap-16 px-5 justify-center mt-12">
+                <p className='text-center'>*Latest</p>
+                <div className='cards mt-12 flex justify-center gap-10'>
                     {sneaker}
                 </div>
+                <Link href='/sneakers'>
+                    <p className='text-end mt-16 pe-10'>More Sneakers</p>
+                </Link>
             </div>
         </>
     )

@@ -25,9 +25,9 @@ const SneakersPage = ({ sneakers, images, sneakerSearch, search }) => {
 
             if(displayImage) {
                 return (
-                    <div key={sneaker.id} className="card w-56 h-44">
+                    <div key={sneaker.id} className="card w-56 h-44 mt-8">
                         <Link href={`/sneaker/details/${sneaker.id}`}>
-                            <img src={`/storage/${displayImage.image}`} alt={sneaker.name}  className='w-full h-44 object-cover'/>
+                            <img src={`/storage/${displayImage.image}`} alt={sneaker.name}/>
                         </Link>
                     </div>
                 )
@@ -57,7 +57,7 @@ const SneakersPage = ({ sneakers, images, sneakerSearch, search }) => {
                         </div>
                     </form>
                 </div>
-                <div className='w-full flex flex-wrap justify-center gap-10 mt-3'>
+                <div className='w-full flex flex-wrap justify-center gap-10 mt-12'>
                     {sneaker}
                 </div>
             </div>
