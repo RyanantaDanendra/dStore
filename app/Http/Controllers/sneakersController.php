@@ -17,6 +17,18 @@ class sneakersController extends Controller
         $sneakerId = Sneaker::pluck('id');
 
         $images = Image::whereIn('id_sneaker', $sneakerId)->get();
+
+        if(Order::whereIn('id_sneaker', $sneakerId)->exists()) {
+            $bests = Order::select('id_sneaker', \DB::raw('SUM(quantity) as total_quantity'))
+                    ->groupBy('id_sneaker')
+                    ->orderBy('total_quantity', 'desc')
+                    ->take(3)
+                    ->get()
+                    ->load('sneaker.image');
+
+        } else {
+            $bests = Sneaker::orderBy('created_at', 'desc')->limit(3)->get();
+        }
         
         // SEARCH FUNCTION
         $query = $request->search;
@@ -35,6 +47,7 @@ class sneakersController extends Controller
             'images' => $images,
             'searchSneaker' => $searchSneaker,
             'search' => $query,
+            'bests' => $bests,
         ]);
     }
 

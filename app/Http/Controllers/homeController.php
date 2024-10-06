@@ -11,7 +11,7 @@ use App\Models\Image;
 class homeController extends Controller
 {
     public function index() {
-        $sneakers = Sneaker::limit(4)->get();
+        $sneakers = Sneaker::limit(8)->get();
 
         // FETCH APPAREL ID
         $sneakerId = Sneaker::pluck('id');

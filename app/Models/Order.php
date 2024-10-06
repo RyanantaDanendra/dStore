@@ -19,15 +19,15 @@ class Order extends Model
     ];
 
     // RELATIONS
-    public function user():  BelongsTo {
+    public function user() {
         return $this->belongsTo(User::class);
     }
 
-    public function sneaker(): BelongsTo {
+    public function sneaker() {
         return $this->BelongsTo(Sneaker::class, 'id_sneaker');
     }
 
-    public function apparel(): BelongsTo {
+    public function apparel() {
         return $this->BelongsTo(Apparel::class, 'id_apparel');
     }
 }

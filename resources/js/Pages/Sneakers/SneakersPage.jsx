@@ -3,7 +3,9 @@ import { Link } from '@inertiajs/react';
 import { useState } from 'react';
 import { Inertia } from '@inertiajs/inertia';
 
-const SneakersPage = ({ sneakers, images, sneakerSearch, search }) => {
+const SneakersPage = ({ sneakers, images, sneakerSearch, search, bests }) => {
+    console.log(bests);
+
     const [query, setQuery] = useState(search || '');
 
     const handleSearch = (e) => {
@@ -16,6 +18,24 @@ const SneakersPage = ({ sneakers, images, sneakerSearch, search }) => {
         console.log("Current Input:", newValue); // Log current input value
         setQuery(newValue);
     }
+
+    const bestSelling = bests.map(best => {
+        const sneaker = best.sneaker;
+        const sneakerImages = sneaker.image;
+        const displayImage = sneakerImages.length > 0 ? sneakerImages[0] : null;
+
+        return(
+            <div key={best.id} className="card w-56 h-44 mt-8">
+                <Link href={`/sneaker/details/${best.id}`}>
+                    {displayImage ? (
+                        <img src={`/storage/${displayImage.image}`} alt={best.name} />
+                    ) : (
+                        <p>No image available</p>
+                    )}
+                </Link>
+            </div>
+        );
+    })
 
     const sneaker = sneakers.map(sneaker => {
         const sneakerImages = images.filter(image => image.id_sneaker == sneaker.id);
@@ -46,8 +66,10 @@ const SneakersPage = ({ sneakers, images, sneakerSearch, search }) => {
     return (
         <>
             <div className="container w-full h-screen pt-32 px-8">
+                <div className="best-sellers w-full h-40">
+                    {bestSelling}
+                </div>
                 <div className='w-full flex justify-between'>
-                    <h1 className='text-4xl font-bold'>SNEAKERS</h1>
                     <form onSubmit={handleSearch}>
                         <div className='flex items-center gap-3'>
                             <input type="text" name='search' value={query} onChange={handleSearchChange} placeholder='Search for Names, Brands, Sizes' className='border-black border-2 w-80'/>

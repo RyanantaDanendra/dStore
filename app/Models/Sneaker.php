@@ -25,7 +25,7 @@ class Sneaker extends Model
         return $this->belongsToMany(Size::class, 'sneaker_size');
     }
 
-    public function image(): HasOne {
+    public function image() {
         return $this->hasOne(Image::class, 'id');
     }
 }

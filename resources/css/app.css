@@ -34,11 +34,11 @@
     font-family: Poppins-bold;
 }
 #homeHero-image #personImage {
-    width: 500px;
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
 }
-#homeHero-image .curveLine {
-    width: 700px;
-}
+
 #homeSneakers h1 {
     font-family: Poppins-bold;
 }

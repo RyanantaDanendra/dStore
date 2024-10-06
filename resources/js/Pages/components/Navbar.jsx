@@ -54,20 +54,22 @@ const Navbar = ({ auth }) => {
                 </>
             );
         } else {
-            return <Link href='/login'>Login</Link>;
+            return <Link href='/login' className='text-white'>Login</Link>;
         }
     }   
 
     return (
         <>
-            <nav className="primary-color h-20 flex justify-between px-5 items-center fixed w-full">
-                <h1 className="text-2xl text-white font-bold">D'Store</h1>
-               <div className="links flex gap-3 text-white">
-                    <Link href='/' className='text-md'>Home</Link>
-                    <Link href="/sneakers" className='text-md'>Sneakers</Link>
-                    <Link href='/apparels' className='text-md me-6'>Apparels</Link>
-                    { renderAuthLink() }
-                </div>
+            <nav className="primary-color h-20 flex justify-between px-8 items-center fixed w-full">
+                    <h1 className="text-2xl text-white font-bold">D'Store</h1>
+                    <div className='text-white flex gap-5'>
+                        <Link  href='/' className='text-md'>Home</Link>
+                        <Link href="/sneakers" className='text-md'>Sneakers</Link>
+                        <Link href='/apparels' className='text-md me-6'>Apparels</Link>
+                    </div>
+                    <div>
+                        { renderAuthLink() }
+                    </div>
             </nav> 
         </>
     );
