@@ -59,7 +59,7 @@ class sneakersController extends Controller
         $images = Image::whereIn('id_sneaker', $sneakerId)->get();
         $liked = null;
         if(auth()->check()) {
-            $liked = Like::where('id_user', auth()->user()->id)->where('id_sneaker', $sneakerId)->exists();
+            $liked = Like::where('id_user', auth()->user()->id)->where('id_sneaker', $sneakerId);
         }
 
         return Inertia::render('Sneakers/SneakerDetails', [

@@ -18,8 +18,8 @@ class Image extends Model
     ];
 
     // RELATIONS
-    public function sneaker(): BelongsTo {
-        return $this->belongsTo(Sneaker::class, 'id_sneaker');
+    public function sneaker() {
+        return $this->belongsTo(Sneaker::class, 'id_image');
     }
 
     public function apparel(): BelongsTo {

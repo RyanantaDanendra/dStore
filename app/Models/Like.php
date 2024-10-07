@@ -16,15 +16,15 @@ class Like extends Model
     ];
 
     // RELATIONS
-    public function user(): HasMany {
+    public function user() {
         return $this->hasMany(User::class);
     }
 
-    public function sneaker(): HasMany {
+    public function sneaker() {
         return $this->hasMany(UsSneakerr::class);
     }
     
-    public function apparel(): HasMany {
+    public function apparel() {
         return $this->hasMany(Apparel::class);
     }
 }

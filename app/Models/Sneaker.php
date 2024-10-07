@@ -26,6 +26,6 @@ class Sneaker extends Model
     }
 
     public function image() {
-        return $this->hasOne(Image::class, 'id');
+        return $this->hasOne(Image::class, 'id_sneaker');
     }
 }

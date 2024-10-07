@@ -10,7 +10,7 @@ import { useForm } from "@inertiajs/inertia-react";
 const SneakerDetails = ({ sneaker, id, sizes, images, auth, success, liked }) => {
     const sneakerImages = images.filter(image => image.id_sneaker == id);
     const sneakerId = sizes.filter(size => size.id_sneaker == id );
-    console.log(sneakerId.length);
+
     const [modalOpen, setModalOpen] = useState(false);
     const [maxStock, setMaxStock] = useState(0);
 
@@ -87,7 +87,7 @@ const SneakerDetails = ({ sneaker, id, sizes, images, auth, success, liked }) =>
         <select name="id_size" id="size" value={data.id_size} onChange={handleSizeChange} className="ms-auto w-52">    
         <option value="" disabled>Select a Size</option>        
             {
-                sizes.map(size => (
+                sneakerId.map(size => (
                     size.stock > 0 ? <option value={size.id} key={size.id}>{size.size}</option> : ''
                 ))
             }
@@ -102,7 +102,7 @@ const SneakerDetails = ({ sneaker, id, sizes, images, auth, success, liked }) =>
             <p>-</p>
         );
 
-    const handlesubmit = (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
         post(route('orderSneaker', {id}));
     }
@@ -140,7 +140,7 @@ const SneakerDetails = ({ sneaker, id, sizes, images, auth, success, liked }) =>
                 modalOpen && (
                     <Modal show={modalOpen} onClose={handleModalClose}>
                         <h1 className="text-center mt-3">Order Details</h1>
-                        <form onSubmit={handlesubmit}>
+                        <form onSubmit={handleSubmit}>
                             <ul className="h-32 ps-4 mt-2" key={sneaker.id}>
                                 <li className="flex items-center w-2/4">
                                     <label htmlFor="name">Name: </label>

@@ -4,8 +4,6 @@ import { useState } from 'react';
 import { Inertia } from '@inertiajs/inertia';
 
 const SneakersPage = ({ sneakers, images, sneakerSearch, search, bests }) => {
-    console.log(bests);
-
     const [query, setQuery] = useState(search || '');
 
     const handleSearch = (e) => {
@@ -15,23 +13,17 @@ const SneakersPage = ({ sneakers, images, sneakerSearch, search, bests }) => {
 
     const handleSearchChange = (e) => {
         const newValue = e.target.value;
-        console.log("Current Input:", newValue); // Log current input value
         setQuery(newValue);
     }
 
     const bestSelling = bests.map(best => {
         const sneaker = best.sneaker;
         const sneakerImages = sneaker.image;
-        const displayImage = sneakerImages.length > 0 ? sneakerImages[0] : null;
 
         return(
             <div key={best.id} className="card w-56 h-44 mt-8">
-                <Link href={`/sneaker/details/${best.id}`}>
-                    {displayImage ? (
-                        <img src={`/storage/${displayImage.image}`} alt={best.name} />
-                    ) : (
-                        <p>No image available</p>
-                    )}
+                <Link href={`/sneaker/details/${sneaker.id}`}>
+                        <img src={`/storage/${sneakerImages.image}`} alt={sneaker.name} />
                 </Link>
             </div>
         );
@@ -65,8 +57,8 @@ const SneakersPage = ({ sneakers, images, sneakerSearch, search, bests }) => {
 
     return (
         <>
-            <div className="container w-full h-screen pt-32 px-8">
-                <div className="best-sellers w-full h-40">
+            <div className="container w-full h-screen pt-28 px-8">
+                <div className="best-sellers w-full h-40 flex justify-center gap-10">
                     {bestSelling}
                 </div>
                 <div className='w-full flex justify-between'>
