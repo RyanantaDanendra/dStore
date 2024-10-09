@@ -39,7 +39,7 @@
     object-fit: cover;
 }
 
-#homeSneakers h1 {
+#homeSneakers h1, #HomeApparels h1 {
     font-family: Poppins-bold;
 }
 

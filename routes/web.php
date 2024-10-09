@@ -82,6 +82,12 @@ Route::post('/sneaker/details/order/{id}', [App\Http\Controllers\sneakersControl
 // SNEAKER LIKE
 Route::post('/sneaker/details/like/{id}', [App\Http\Controllers\sneakersController::class, 'like'])->name('like_sneaker')->middleware('auth');
 
+// APPARELS
+Route::get('/apparels', [App\Http\Controllers\apparelsController::class, 'index'])->name('apparels');
+// APPAREL DETAILS PAGE
+Route::get('/apparel/details/{id}', [App\Http\Controllers\apparelsController::class, 'apparelDetailsPage'])->name('apparelDetailsPage');
+// ORDER APPAREL
+Route::post('/apparel/order/{id}', [App\Http\Controllers\apparelController::class, 'orderApparel'])->name('orderApparel')->middleware('auth');
 
 Route::get('/register', function() {
     return Inertia::render('Register');

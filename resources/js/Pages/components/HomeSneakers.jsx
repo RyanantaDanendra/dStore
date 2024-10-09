@@ -1,5 +1,4 @@
 import '../../../css/app.css';
-import axios from 'axios';
 import { Link } from '@inertiajs/react';
 
 const HomeSneakers = ({ images, sneakers }) => {

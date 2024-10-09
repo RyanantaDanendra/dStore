@@ -15,7 +15,7 @@ const AddApparel = () => {
 
     return (
         <DashboardLayout>
-            <div className="conteiner w-full p-8">
+            <div className="conteiner w-full p-8 ms-56">
                 <h1>Add Apparel</h1>
                 <form onSubmit={handleSubmit}>
                     <ul className="w-80 mt-8">

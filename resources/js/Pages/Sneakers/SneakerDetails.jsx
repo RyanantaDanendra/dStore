@@ -97,10 +97,10 @@ const SneakerDetails = ({ sneaker, id, sizes, images, auth, success, liked }) =>
     );
 
     const quantityInput = sizes.length > 0 ? (
-            <input type="number" max={maxStock} min={1}  name="quantity" id="quantity" value={data.quantity} onChange={e => setData('quantity', e.target.value)} className="ms-auto" />    
-        ) : (
-            <p>-</p>
-        );
+        <input type="number" max={maxStock} min={1}  name="quantity" id="quantity" value={data.quantity} onChange={e => setData('quantity', e.target.value)} className="ms-auto" />    
+    ) : (
+        <p>-</p>
+    );
 
     const handleSubmit = (e) => {
         e.preventDefault();

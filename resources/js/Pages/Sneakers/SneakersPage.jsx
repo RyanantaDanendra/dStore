@@ -58,6 +58,7 @@ const SneakersPage = ({ sneakers, images, sneakerSearch, search, bests }) => {
     return (
         <>
             <div className="container w-full h-screen pt-28 px-8">
+                <h1 className='text-center text-4xl'>Best Sellers</h1>
                 <div className="best-sellers w-full h-40 flex justify-center gap-10">
                     {bestSelling}
                 </div>
