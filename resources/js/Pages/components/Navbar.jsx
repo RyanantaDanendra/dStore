@@ -1,8 +1,9 @@
 import React from 'react';
-import { Link } from '@inertiajs/inertia-react';
+import { Link } from '@inertiajs/react';
 import '../../../css/app.css'
-import Sneakers from '../Sneakers';
 import Apparels from '../Apparels';
+import Sneakers from '../Sneakers';
+import Home from '../Home';
 import { useState } from 'react';
 import { useEffect } from 'react';
 

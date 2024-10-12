@@ -87,7 +87,7 @@ Route::get('/apparels', [App\Http\Controllers\apparelsController::class, 'index'
 // APPAREL DETAILS PAGE
 Route::get('/apparel/details/{id}', [App\Http\Controllers\apparelsController::class, 'apparelDetailsPage'])->name('apparelDetailsPage');
 // ORDER APPAREL
-Route::post('/apparel/order/{id}', [App\Http\Controllers\apparelController::class, 'orderApparel'])->name('orderApparel')->middleware('auth');
+Route::post('/apparel/order/{id}', [App\Http\Controllers\apparelsController::class, 'orderApparel'])->name('orderApparel')->middleware('auth');
 
 Route::get('/register', function() {
     return Inertia::render('Register');
