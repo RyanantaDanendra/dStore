@@ -8,6 +8,7 @@ import { useState } from "react";
 import { useForm } from "@inertiajs/inertia-react";
 
 const SneakerDetails = ({ sneaker, id, sizes, images, auth, success, liked }) => {
+    console.log(liked);
     const sneakerImages = images.filter(image => image.id_sneaker == id);
     const sneakerId = sizes.filter(size => size.id_sneaker == id );
 
@@ -41,7 +42,7 @@ const SneakerDetails = ({ sneaker, id, sizes, images, auth, success, liked }) =>
         return (
             <>       
             {
-                liked ? (
+                liked  == true ? (
                             <Link href={route('like_sneaker', {id})} method="post" as="button">
                                 <svg xmlns="http://www.w3.org/2000/svg" className="absolute w-8 top-52 left-1/4" viewBox="0 0 512 512"><path fill="#ff0000" d="M47.6 300.4L228.3 469.1c7.5 7 17.4 10.9 27.7 10.9s20.2-3.9 27.7-10.9L464.4 300.4c30.4-28.3 47.6-68 47.6-109.5v-5.8c0-69.9-50.5-129.5-119.4-141C347 36.5 300.6 51.4 268 84L256 96 244 84c-32.6-32.6-79-47.5-124.6-39.9C50.5 55.6 0 115.2 0 185.1v5.8c0 41.5 17.2 81.2 47.6 109.5z"/></svg>
                             </Link>
@@ -150,19 +151,27 @@ const SneakerDetails = ({ sneaker, id, sizes, images, auth, success, liked }) =>
                                     <label htmlFor="condition">Condition: </label>
                                     <p className="ms-auto">{sneaker.condition}</p>
                                 </li>
-                                <li className="flex items-center mt-3 w-2/4">
+                                <li className="flex items-center justify-between mt-3 w-2/4">
                                     <label htmlFor="id_size">Pick a size</label>
                                     {sizeInput}
                                     {errors.id_size && <p className="text-red-500">{errors.id_size}</p>}
                                 </li>
-                                <li className="flex items-center mt-3 w-2/4">
+                                <li className="flex items-center justify-between mt-3 w-2/4">
                                     <label htmlFor="quantity">Quantity</label>
                                     {quantityInput}
                                     {errors.quantity && <p className="text-red-500">{errors.quantity}</p>}
                                 </li>
-                                <li className=" mt-3 w-32">
-                                    <button type="submit" className="secondary-color text-white px-4 py-2">Order Now!</button>
-                                </li>
+                                {
+                                    sizes.length > 0 ? (
+                                        <li className=" mt-20 w-32">
+                                            <button type="submit" className="secondary-color text-white px-4 py-2">Order Now!</button>
+                                        </li>
+                                    ) : (
+                                        <li className=" mt-20 w-32">
+                                            <button type="submit" disabled className="bg-gray-400 text-white px-4 py-2">Order Now!</button>
+                                        </li>
+                                    )
+                                }
                             </ul>
                         </form>
                     </Modal>

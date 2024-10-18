@@ -9,7 +9,7 @@ import Layout from "./components/Layout";
 import { Link } from "@inertiajs/react";
 import HomeApparels from "./components/HomeApparels";
 
-function Home({ auth, images, sneakers, apparels }) {
+function Home({ auth, images, sneakers, apparels, apparelImages }) {
     if (auth.user) {
         if(auth.user.status == 'active') {
             return (
@@ -17,7 +17,7 @@ function Home({ auth, images, sneakers, apparels }) {
                     <Layout auth={auth}>
                         <HomeHero />
                         <HomeSneakers images={images} sneakers={sneakers} />
-                        <HomeApparels apparels={apparels} images={images} />
+                        <HomeApparels apparels={apparels} images={apparelImages} />
                     </Layout>
                 </>
             );
@@ -37,6 +37,7 @@ function Home({ auth, images, sneakers, apparels }) {
                 <Layout auth={auth}>
                     <HomeHero />
                     <HomeSneakers images={images} sneakers={sneakers} />
+                    <HomeApparels apparels={apparels} images={apparelImages} />
                 </Layout>
             </>
         );

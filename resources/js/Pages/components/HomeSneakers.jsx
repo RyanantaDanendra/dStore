@@ -11,7 +11,7 @@ const HomeSneakers = ({ images, sneakers }) => {
             if(displayImage) {
 
                 return (
-                    <div className="card w-56 h-44">
+                    <div key={sneaker.id} className="card w-56 h-44">
                         <Link href={`/sneaker/details/${sneaker.id}`}>
                             <img src={`/storage/${displayImage}`} alt={displayImage} />
                         </Link>
@@ -31,7 +31,6 @@ const HomeSneakers = ({ images, sneakers }) => {
     })
 
     return (
-        <>
             <div className="container w-full h-full mt-32 pb-12" id='homeSneakers'>
                 <h1 className='homeSneakers-stroke text-5xl text-transparent text-center'>Sneakers</h1>
                 <p className='text-center'>*Latest</p>
@@ -42,7 +41,6 @@ const HomeSneakers = ({ images, sneakers }) => {
                     <p className='text-end mt-16 pe-10'>More Sneakers</p>
                 </Link>
             </div>
-        </>
     )
 }
 export default HomeSneakers

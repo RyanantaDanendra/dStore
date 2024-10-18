@@ -23,12 +23,19 @@ class sneakersController extends Controller
                     ->groupBy('id_sneaker')
                     ->orderBy('total_quantity', 'desc')
                     ->take(3)
-                    ->get()
-                    ->load('sneaker.image');
+                    ->load('sneaker.image')
+                    ->get();
+
+            $bestId = $bests->pluck('id');
+            $bestImages = Image::whereIn('id_sneaker', $bestId);
 
         } else {
             $bests = Sneaker::orderBy('created_at', 'desc')->limit(3)->get();
+            
+            $bestId = $bests->pluck('id');
+            $bestImages = Image::whereIn('id_sneaker', $bestId)->get();
         }
+
         
         // SEARCH FUNCTION
         $query = $request->search;
@@ -43,23 +50,24 @@ class sneakersController extends Controller
                         })->get();
 
         return Inertia::render('Sneakers', [
-            'sneakers' => $query ? $searchSneaker : $sneakers,
+            'sneakers' => $searchSneaker,
             'images' => $images,
             'searchSneaker' => $searchSneaker,
             'search' => $query,
             'bests' => $bests,
+            'bestImages' => $bestImages,
         ]);
     }
 
     public function sneakerDetailsPage($id) {
         $sneaker = Sneaker::find($id);
-        $sneakerId = Sneaker::pluck('id');
+        $sneakerId = $sneaker::pluck('id');
 
         $sizes = Size::whereIn('id_sneaker', $sneakerId)->get();
         $images = Image::whereIn('id_sneaker', $sneakerId)->get();
         $liked = null;
         if(auth()->check()) {
-            $liked = Like::where('id_user', auth()->user()->id)->where('id_sneaker', $sneakerId);
+            $liked = Like::where('id_user', auth()->user()->id)->where('id_sneaker', $sneaker->id)->exists();
         }
 
         return Inertia::render('Sneakers/SneakerDetails', [

@@ -24,10 +24,14 @@ class homeController extends Controller
         // FETCH SNEAKER IMAGE
         $images = Image::whereIn('id_sneaker', $sneakerId)->get();
 
+        // FETCH APPAREL IMAGE
+        $apparelImages = Image::whereIn('id_apparel', $sneakerId)->get();
+
         return Inertia::render('Home', [
             'sneakers' => $sneakers,
             'images' => $images,
             'apparels' => $apparels,
+            'apparelImages' => $apparelImages,
         ]);
     }
 }

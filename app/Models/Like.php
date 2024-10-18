@@ -13,6 +13,7 @@ class Like extends Model
     protected $fillable = [
         'id_user',
         'id_sneaker',
+        'id_apparel',
     ];
 
     // RELATIONS

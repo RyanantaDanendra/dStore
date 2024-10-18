@@ -18,19 +18,19 @@ class Apparel extends Model
     ];
 
     // RELATIONS
-    public function size(): HasMany {
+    public function size() {
         return $this->HasMany(Size::class);
     }
 
-    public function image(): HasOne {
+    public function image() {
         return $this->hasOne(Image::class);
     }
 
-    public function order(): HasMany {
+    public function order() {
         return $this->hasMany(Order::class);
     }
 
-    public function like(): HasMany {
+    public function like() {
         return $this->HasMany(Like::class);
     }
 }

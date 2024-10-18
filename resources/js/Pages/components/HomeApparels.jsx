@@ -1,9 +1,9 @@
 import Layout from "./Layout";
 import '../../../css/app.css';
 import AddApparelImages from "../Dashboard/AddApparelImages";
+import { Link } from "@inertiajs/react";
 
 const HomeApparels = ({ apparels, images }) => {  
-    console.log(apparels.length);
     const apparel = apparels.map(apparel => {
         // FILTER THE IMAGE DATA BASED ON THE APPAREL ID
         const apparelImages = images.filter(image => image.id_apparel == apparel.id);
@@ -16,7 +16,7 @@ const HomeApparels = ({ apparels, images }) => {
                 return (
                     <div className="card w-56 h-44">
                         <Link>
-                            <img src={`/storage/${displayImage}`} alt={apparel.name} />
+                            <img src={`/storage/${displayImage.image}`} alt={apparel.name} />
                         </Link>
                     </div>
                 );

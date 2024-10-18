@@ -1,9 +1,9 @@
 import Layout from "./components/Layout";
 import ApparelsPage from "./components/ApparelsPage";
 
-const Apparels = ({ apparels, images, sizes }) => {
+const Apparels = ({ apparels, images, sizes, auth }) => {
     return (
-        <Layout>
+        <Layout auth={auth}>
             <ApparelsPage apparels={apparels} images={images} sizes={sizes} />
         </Layout>
     )

@@ -8,6 +8,7 @@ use App\Models\Apparel;
 use App\Models\Image;
 use App\Models\SIze;
 use App\Models\Order;
+use App\Models\Like;
 
 class apparelsController extends Controller
 {
@@ -36,11 +37,15 @@ class apparelsController extends Controller
         // FETCH THE APPAREL SIZE
         $sizes = Size::whereIn('id_apparel', $apparelId)->get();
 
+        // CHECK IF THERE IS A LIKE DATA OF USER AND APPAREL
+        $liked = Like::where('id_user', auth()->user()->id)->where('id_apparel', $id)->exists();
+
         return Inertia::render('ApparelDetails', [
             'id' => $id,
             'apparel' => $apparel,
             'images' => $images,
             'sizes' => $sizes,
+            'liked' => $liked,
         ]);
     }
 
@@ -60,6 +65,19 @@ class apparelsController extends Controller
             $size->save();
         } else {
             return back()->withErrors(['size' => 'Size not found for this sneaker']);
+        }
+    }
+
+    public function like($id) {
+        $liked = Like::where('id_user', auth()->user()->id)->where('id_apparel', $id)->first();
+
+        if($liked) {
+            $liked->delete();
+        } else {
+            Like::create([
+                'id_user'       => auth()->user()->id,
+                'id_apparel'    => $id,
+            ]);
         }
     }
 }

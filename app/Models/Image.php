@@ -22,7 +22,7 @@ class Image extends Model
         return $this->belongsTo(Sneaker::class, 'id_image');
     }
 
-    public function apparel(): BelongsTo {
-        return $this->belongsTo(Apparel::class, 'id_apparel');
+    public function apparel() {
+        return $this->belongsTo(Apparel::class, 'id_image');
     }
 }
