@@ -22,7 +22,7 @@ class Size extends Model
         return $this->belongsToMany(Sneaker::class, 'sneaker_size');
     }
 
-    public function apparel(): HasMany {
-        return $this->hasMany(Apparel::class);
+    public function apparel() {
+        return $this->belongsTo(Apparel::class, 'id_size');
     }
 }

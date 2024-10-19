@@ -47,8 +47,8 @@ const ApparelDetails = ({ apparel, images, sizes, id, auth, liked }) => {
                     >
                         {
                             apparelImages.map((image, index) => (
-                                <div key={index} className="mt-28">
-                                    <img src={`/storage/${image.image}`} alt="" className="w-28 h-48 object-cover"/>
+                                <div key={index}>
+                                    <img src={`/storage/${image.image}`} alt="" className="w-full h-full object-contain"/>
                                 </div>
                             ))
                         }
@@ -161,7 +161,7 @@ const ApparelDetails = ({ apparel, images, sizes, id, auth, liked }) => {
         <Layout>
             <div className="container w-full h-screen flex justify-center items-center">
                 <div className="images">
-                    <div className="box w-64 h-full bg-white">
+                    <div className="box w-64 h-full mt-32 bg-white">
                         {imageData()}
                     </div>
                 </div>

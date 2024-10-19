@@ -39,9 +39,9 @@ const Navbar = ({ auth }) => {
 
     const popOver = () => {
         return open ? (
-            <div id='popover' className={ `absolute flex items-center flex-col justify-center w-24 h-20 pb-2 bg-white right-5 top-14 popover-content ${visible ? 'fade-in' : 'fade-out'}` }>
-                <Link href='/profile' className='text-black w-full block text-center hover:bg-blue-600 hover:text-white duration-200 ease-out '>Profile</Link>
-                 <Link href='/logout' method='post' as='button' className='text-black w-full block mx-auto hover:bg-blue-600 hover:text-white duration-200 ease-out'>Logout</Link>
+            <div id='popover' className={ `absolute flex flex-col justify-center w-40 h-20 bg-white right-14 top-16 popover-content ${visible ? 'fade-in' : 'fade-out'}` }>
+                <Link href='/profile' className='text-black w-full hover:bg-gray-200 duration-200 ease-out h-1/2 ps-2 flex items-center'>Profile</Link>
+                <Link href='/logout' method='post' as='button' className='text-black w-full ps-2 flex items-center hover:bg-gray-200 text-start h-1/2 duration-200 ease-out'>Logout</Link>
             </div>
         ) : null
     }

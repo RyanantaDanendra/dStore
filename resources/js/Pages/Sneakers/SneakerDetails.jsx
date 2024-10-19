@@ -61,8 +61,8 @@ const SneakerDetails = ({ sneaker, id, sizes, images, auth, success, liked }) =>
                 >
                     {
                         sneakerImages.map((image, index) => (
-                            <div key={index} className="mt-20">
-                                <img src={`/storage/${image.image}`} alt="" className="w-28 h-28 object-cover"/>
+                            <div key={index}>
+                                <img src={`/storage/${image.image}`} alt="" className="w-full h-full object-contain"/>
                             </div>
                         ))
                     }
@@ -118,7 +118,7 @@ const SneakerDetails = ({ sneaker, id, sizes, images, auth, success, liked }) =>
         <Layout auth={auth}>
             <div className="container w-full h-screen flex justify-center items-center gap-12">
                 <div className="images">
-                    <div className="box w-64 h-64 bg-white">
+                    <div className="box w-64 h-full mt-32 bg-white">
                         {imageCarousel()}
                     </div>
                 </div>

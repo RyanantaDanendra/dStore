@@ -6,14 +6,17 @@ import Apparels from "./Apparels";
 import HomeHero from "./components/HomeHero";
 import HomeSneakers from "./components/HomeSneakers";
 import Layout from "./components/Layout";
-import { Link } from "@inertiajs/react";
 import HomeApparels from "./components/HomeApparels";
+import { Link } from "@inertiajs/react";
+import { Head } from '@inertiajs/react';
 
 function Home({ auth, images, sneakers, apparels, apparelImages }) {
     if (auth.user) {
         if(auth.user.status == 'active') {
             return (
                 <>
+                    <Head title="Home" />
+
                     <Layout auth={auth}>
                         <HomeHero />
                         <HomeSneakers images={images} sneakers={sneakers} />

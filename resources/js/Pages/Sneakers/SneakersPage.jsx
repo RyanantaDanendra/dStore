@@ -10,7 +10,6 @@ const SneakersPage = ({ sneakers, images, searchSneaker, search, bests, bestImag
 
     const handleSearch = (e) => {
         e.preventDefault();
-        console.log("Searching for:", query);
         Inertia.get(route('sneakers'), {search: query});
     }
 
@@ -86,9 +85,15 @@ const SneakersPage = ({ sneakers, images, searchSneaker, search, bests, bestImag
                         </div>
                     </form>
                 </div>
-                <div className='w-full flex flex-wrap justify-center gap-12 mt-16'>
-                    {sneaker}
-                </div>
+                {
+                    sneakers.length > 0 ? (
+                        <div className='w-full flex flex-wrap justify-center gap-12 mt-16'>
+                            {sneaker}
+                        </div>
+                    ) : (
+                        <p className="text-2xl text-gray-400 text-center mt-12">No Sneaker Yet!</p>
+                    )
+                }
             </div>
         </>
     );

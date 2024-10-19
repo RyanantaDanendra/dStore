@@ -33,11 +33,14 @@ const HomeApparels = ({ apparels, images }) => {
     })
 
     return (
-        <div id="HomeApparels" className="container w-full">
+        <div id="HomeApparels" className="container w-full pb-12">
             <h1 className='homeSneakers-stroke text-5xl text-transparent text-center'>Apparels</h1>
             <div className='cards mt-12 flex justify-center gap-10'>
                 {apparels.length > 0 ? apparel : <p> No Apparel Yet </p>}
             </div>
+            <Link href="/apparels">
+                <p className="text-end mt-32 pe-10 text-blue-400 hover:underline">More Apparels</p>
+            </Link>
         </div>
     )
 }

@@ -66,3 +66,11 @@
 .card:hover {
     transform:translateY(-10px)
 }
+
+/* TCAROUSEL THUMB */
+.thumb {
+    object-fit: fill;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

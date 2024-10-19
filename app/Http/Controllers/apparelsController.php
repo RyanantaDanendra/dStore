@@ -12,17 +12,60 @@ use App\Models\Like;
 
 class apparelsController extends Controller
 {
-    public function index() {
+    public function index(Request $request) {
+        //FETCH APPARELS DATA AND ID
         $apparels = Apparel::all();
         $apparelId = $apparels->pluck('id');
 
+        // FETCH IMAGES DATA BASED ON APPARELID
         $images = Image::whereIn('id_apparel', $apparelId)->get();
+        // FETCH SIZES DATA BASED ON APPARELID
         $sizes = Size::whereIn('id_apparel', $apparelId)->get();
 
+        // FETCH THE INPUT NAMED SEARCH
+        $query = $request->search;
+
+        // SEARCH FUNCTION
+        $searchApparels = Apparel::with('size')
+                            -> when($query, function($q) use ($query) {
+                            return $q->where('name', 'like', '%' . $query . '%')
+                            ->orWhere('brand', 'like', '%' . $query . '%')
+                            ->orWhereHas('size', function($q) use ($query) {
+                                $q->where('size', 'like', '%' . $query . '%');
+                            });
+                        })->get();
+
+        // BEST SELLING SECTION FUNCTION
+        if(Order::whereIn('id_apparel', $apparelId)->exists()) {
+            $bests = Order::select('id_apparel', \DB::raw('SUM(quantity) as total_quantity'))
+                    ->with('apparel.image')
+                    ->groupBy('id_apparel')
+                    ->orderBy('total_quantity', 'desc')
+                    ->take(3)
+                    ->get();
+
+            // FETCH BEST SELLING APPAREL ID
+            $bestId = $bests->pluck('id_apparel');
+            // FETCH BEST SELLING APPAREL IMAGE
+            $bestImages = Image::whereIn('id_apparel', $bestId)->get();
+        } else {
+            // FETCH THE LATEST APPAREL DATA
+            $bests = Apparel::orderBy('created_at', 'desc')->limit(3)->get();
+
+            // FETCH LATES APPAREL ID
+            $bestId = $bests->pluck('id_apparel');
+            // FETCH LATEST APPAREL IMAGE
+            $bestImages = Image::whereIn('id_apparel', $bestId)->get();
+        }
+
+        // RETURN INERTIA PAGE
         return Inertia::render('Apparels', [
-            'apparels' => $apparels,
+            'apparels' => $searchApparels,
             'images' => $images,
             'sizes' => $sizes,
+            'search' => $query,
+            'bests' => $bests,
+            'bestImages' => $bestImages,
         ]);
     }
 
@@ -37,8 +80,12 @@ class apparelsController extends Controller
         // FETCH THE APPAREL SIZE
         $sizes = Size::whereIn('id_apparel', $apparelId)->get();
 
-        // CHECK IF THERE IS A LIKE DATA OF USER AND APPAREL
-        $liked = Like::where('id_user', auth()->user()->id)->where('id_apparel', $id)->exists();
+        // INITIATE THE $LIKED FIRST
+        $liked = null;
+        if(auth()->check()) {
+            // CHECK IF THERE IS A LIKE DATA OF USER AND APPAREL
+            $liked = Like::where('id_user', auth()->user()->id)->where('id_apparel', $apparelId)->exists();
+        }
 
         return Inertia::render('ApparelDetails', [
             'id' => $id,
@@ -80,4 +127,5 @@ class apparelsController extends Controller
             ]);
         }
     }
+
 }

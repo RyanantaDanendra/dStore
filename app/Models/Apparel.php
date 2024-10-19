@@ -19,11 +19,11 @@ class Apparel extends Model
 
     // RELATIONS
     public function size() {
-        return $this->HasMany(Size::class);
+        return $this->hasMany(Size::class, 'id_apparel');
     }
 
     public function image() {
-        return $this->hasOne(Image::class);
+        return $this->hasMany(Image::class, 'id_apparel');
     }
 
     public function order() {
