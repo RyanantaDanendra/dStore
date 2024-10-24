@@ -37,6 +37,7 @@ class dashboardController extends Controller
             'sneakers' => $sneakers,
             'sizes' => $sizes,
             'images' => $images,
+            'success' => session('success'),
         ]);
     }
 
@@ -79,7 +80,7 @@ class dashboardController extends Controller
             'stock' => $request->stock,
         ]);
 
-        return redirect()->route('dashboard.sneakers');
+        return redirect()->route('dashboard.sneakers')->with('success', 'Size and Stock Addes Successfully!');
     }
 
     // DASHBOARD -> SNEAKERS -> ADD IMAGE
@@ -105,7 +106,7 @@ class dashboardController extends Controller
             'image' => $path,
         ]);
 
-        return redirect()->route('dashboard.sneakers');
+        return redirect()->route('dashboard.sneakers')->with('success', 'Image Added Successfully!');
     }
 
     // DASHBOARD -> SNEAKERS -> EDIT SNEAKER

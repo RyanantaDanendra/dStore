@@ -6,14 +6,26 @@ import { Link } from "@inertiajs/react";
 import Modal from "@/Components/Modal";
 import { useState } from "react";
 import { useForm } from "@inertiajs/inertia-react";
+import { useEffect } from "react";
+import Swal from 'sweetalert2';
 
 const SneakerDetails = ({ sneaker, id, sizes, images, auth, success, liked }) => {
-    console.log(liked);
     const sneakerImages = images.filter(image => image.id_sneaker == id);
     const sneakerId = sizes.filter(size => size.id_sneaker == id );
 
     const [modalOpen, setModalOpen] = useState(false);
     const [maxStock, setMaxStock] = useState(0);
+
+    useEffect(() => {
+        if(success) {
+            Swal.fire({
+                title: 'Success!',
+                text: success,
+                icon: 'success',  
+                confirmButtonText: 'Cool'
+            });
+        }
+    }, [success]);
 
     const {data, setData, post, processing, errors} = useForm({
         id_size: '',
@@ -163,11 +175,11 @@ const SneakerDetails = ({ sneaker, id, sizes, images, auth, success, liked }) =>
                                 </li>
                                 {
                                     sizes.length > 0 ? (
-                                        <li className=" mt-20 w-32">
+                                        <li className=" mt-12 w-32">
                                             <button type="submit" className="secondary-color text-white px-4 py-2">Order Now!</button>
                                         </li>
                                     ) : (
-                                        <li className=" mt-20 w-32">
+                                        <li className="mt-20 w-32">
                                             <button type="submit" disabled className="bg-gray-400 text-white px-4 py-2">Order Now!</button>
                                         </li>
                                     )

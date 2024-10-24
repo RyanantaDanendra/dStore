@@ -1,8 +1,21 @@
 import { Inertia } from '@inertiajs/inertia';
 import DashboardLayout from "../components/DashboardLayout"
 import { Link } from "@inertiajs/react";
+import Swal from 'sweetalert2';
+import { useEffect } from 'react';
 
-const Sneakers = ({ sneakers, sizes, images, auth}) => {
+const Sneakers = ({ sneakers, sizes, images, auth, success }) => {
+    useEffect(() => {
+        if(success) {
+            Swal.fire({
+                title: 'Success!',
+                text: success,
+                icon: 'success',  
+                confirmButtonText: 'Cool'
+            });
+        }
+    }, [success]);
+
     const data = sneakers.map((sneaker) => {
         const sneakerSizes = sizes.filter(size => size.id_sneaker == sneaker.id); 
         const sneakerImages = images.filter(image => image.id_sneaker == sneaker.id);

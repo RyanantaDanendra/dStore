@@ -76,6 +76,7 @@ class sneakersController extends Controller
             'sizes' => $sizes,
             'images' => $images,
             'liked' => $liked,
+            'success' => session('success'),
         ]);
     }
 
@@ -104,7 +105,7 @@ class sneakersController extends Controller
             return back()->withErrors(['size' => 'Size not found for this sneaker']);
         }
 
-        return back()->with('success', 'Order placed successfully');
+        return back()->with('success', 'Order placed successfully!');
     }
 
     public function like($id) {

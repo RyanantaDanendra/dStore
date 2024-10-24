@@ -11,7 +11,7 @@ const HomeSneakers = ({ images, sneakers }) => {
             if(displayImage) {
 
                 return (
-                    <div key={sneaker.id} className="card w-56 h-44">
+                    <div key={sneaker.id} className="card w-56 h-44 mt-5">
                         <Link href={`/sneaker/details/${sneaker.id}`}>
                             <img src={`/storage/${displayImage}`} alt={displayImage} />
                         </Link>
@@ -34,7 +34,7 @@ const HomeSneakers = ({ images, sneakers }) => {
             <div className="container w-full h-full mt-32 pb-12" id='homeSneakers'>
                 <h1 className='homeSneakers-stroke text-5xl text-transparent text-center'>Sneakers</h1>
                 <p className='text-center'>*Latest</p>
-                <div className='cards mt-12 flex justify-center gap-10'>
+                <div className='cards mt-12 flex flex-wrap justify-center gap-10'>
                     {sneaker}
                 </div>
                 <Link href='/sneakers'>
