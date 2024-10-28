@@ -21,42 +21,95 @@ const Sneakers = ({ sneakers, sizes, images, auth, success }) => {
         const sneakerImages = images.filter(image => image.id_sneaker == sneaker.id);
 
         const handleDelete = (id) => {
-            if(window.confirm("Are you sure you want to delete this data?")) {                
-                Inertia.delete(route('deleteSneaker', {id}), {
-                    onSuccess: () => {
-                        alert('Sneaker deleted successfully');
-                    },
-                    onError: () => {
-                        alert('Failed to delete sneaker');
-                    }
-                })
-            }
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, delete it!"
+            }).then((result) => {
+                if(result.isConfirmed) {
+                    Inertia.delete(route('deleteSneaker', {id}), {
+                        onSuccess: () => {
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "Your file has been deleted.",
+                                icon: "success"
+                            });
+                        },
+                        onError: () => {
+                            Swal.fire({
+                                title: "Error",
+                                text: "There's an error!",
+                                icon: "error"
+                            });
+                        }
+                    })
+                }
+            })
+            // if(window.confirm("Are you sure you want to delete this data?")) {                
+
+            // }
         }
 
         const handleSizeStockDelete = (id) => {
-            if(window.confirm("Are you sure you want to delete this sneaker size and stock?")) {
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, delete it!"
+            }).then((result) => {
                 Inertia.delete(route('deleteSizeStock', {id}), {
                     onSuccess: () => {
-                        alert('Sneaker deleted successfully');
+                        Swal.fire({
+                            title: "Deleted!",
+                            text: "Your file has been deleted.",
+                            icon: "success"
+                        });
                     },
                     onError: () => {
-                        alert('Failed to delete sneaker');
+                        Swal.fire({
+                            title: "Error",
+                            text: "There was an error",
+                            icon: "error"
+                        });
                     }
                 });
-            }
+            })
         }
 
         const handleImageDelete = (id) => {
-            if(window.confirm('Are you sure you wan to delete this sneaker image?')) {
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, delete it!"
+            }).then((result) => {
                 Inertia.delete(route('deleteImage', {id}), {
                     onSuccess: () => {
-                        alert('Sneaker image deleted successfully');
+                        Swal.fire({
+                            title: "Deleted!",
+                            text: "Image Deleted Successfully!",
+                            icon: "success"
+                        });
                     },
                     onError: () => {
-                        alert('Failed to delete sneaker image');
+                        Swal.fire({
+                            title: 'Error',
+                            text: "There was an error",
+                            icon: "error",
+                        });
                     }
                 });
-            }
+            })
         }
 
         const imageData = () => {

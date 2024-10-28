@@ -14,7 +14,7 @@ const EditSizeStock = ({ id, size }) => {
 
     return (
         <DashboardLayout>
-            <div className="container p-8">
+            <div className="container p-8 ms-56">
                 <h1>Edit Size and Stock</h1>
                 <form onSubmit={handleSubmit}>
                     <ul className="w-80 mt-8">

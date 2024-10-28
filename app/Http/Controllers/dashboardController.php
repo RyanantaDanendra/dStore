@@ -175,6 +175,9 @@ class dashboardController extends Controller
 
             // DELETE SNEAKER DATA ( NAME, BRAND, CONDITION )
             $sneaker->delete();
+
+            // RETURN BACK TO THE PAGE
+            return redirect()->back();
         }
     }
 

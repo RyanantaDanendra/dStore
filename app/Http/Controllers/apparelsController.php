@@ -38,7 +38,7 @@ class apparelsController extends Controller
         // BEST SELLING SECTION FUNCTION
         if(Order::whereIn('id_apparel', $apparelId)->exists()) {
             $bests = Order::select('id_apparel', \DB::raw('SUM(quantity) as total_quantity'))
-                    ->with('apparel.image')
+                    ->whereNotNull('id_apparel')
                     ->groupBy('id_apparel')
                     ->orderBy('total_quantity', 'desc')
                     ->take(3)
@@ -53,7 +53,7 @@ class apparelsController extends Controller
             $bests = Apparel::orderBy('created_at', 'desc')->limit(3)->get();
 
             // FETCH LATES APPAREL ID
-            $bestId = $bests->pluck('id_apparel');
+            $bestId = $bests->pluck('id');
             // FETCH LATEST APPAREL IMAGE
             $bestImages = Image::whereIn('id_apparel', $bestId)->get();
         }
@@ -93,6 +93,7 @@ class apparelsController extends Controller
             'images' => $images,
             'sizes' => $sizes,
             'liked' => $liked,
+            'success' => session('success'),
         ]);
     }
 
@@ -110,6 +111,9 @@ class apparelsController extends Controller
             $size->stock -= $request->quantity;
 
             $size->save();
+
+            // RETURN ALERT
+            return back()->with('success', 'Order placed successfully');
         } else {
             return back()->withErrors(['size' => 'Size not found for this sneaker']);
         }

@@ -23,11 +23,10 @@ class sneakersController extends Controller
                     ->groupBy('id_sneaker')
                     ->orderBy('total_quantity', 'desc')
                     ->take(3)
-                    ->load('sneaker.image')
                     ->get();
 
-            $bestId = $bests->pluck('id');
-            $bestImages = Image::whereIn('id_sneaker', $bestId);
+            $bestId = $bests->pluck('id_sneaker');
+            $bestImages = Image::whereIn('id_sneaker', $bestId)->get();
 
         } else {
             $bests = Sneaker::orderBy('created_at', 'desc')->limit(3)->get();
